@@ -48,6 +48,10 @@ nav a:hover, .active {
 /*Footer Section*/
 
 .footer-section{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     padding: 20px;
     height: 200px;
     background-color: #21364b;

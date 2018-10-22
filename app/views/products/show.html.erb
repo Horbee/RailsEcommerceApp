@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="margin-top-75">
+  <div class="card mb-3">
+    <%= image_tag(@product.image_url, size: '1108x180')%>
+    <div class="card-body">
+      <h5 class="card-title"><%= @product.name %></h5>
+      <p class="card-text"><%= @product.description %></p>
+    </div>
+  </div>
+  
+  <%= link_to 'Edit', edit_product_path(@product) %> |
+  <%= link_to 'Back', products_path %>
+</div>
+
+
+
