@@ -3,7 +3,7 @@
 
 <div class="margin-top-75">
   <div class="card mb-3">
-    <% if Rails.application.assets.find_asset(@product.image_url) == nil %>
+    <% if Rails.application.assets(@product.image_url) == nil %>
       <%= image_tag("placeholder.jpg", size: '1108x180')%>
     <% else %>
       <%= image_tag(@product.image_url, size: '1108x180')%>
