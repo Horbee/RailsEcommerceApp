@@ -3,7 +3,7 @@
 
 <div class="margin-top-75">
   <div class="card mb-3">
-    <% if Rails.application.assets(@product.image_url) == nil %>
+    <% if @product.image_url == nil %>
       <%= image_tag("placeholder.jpg", size: '1108x180')%>
     <% else %>
       <%= image_tag(@product.image_url, size: '1108x180')%>
@@ -13,7 +13,7 @@
       <p class="card-text"><%= @product.description %></p>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">Color: <%= @product.color ? @product.color : "Not specified" %></li>
+      <li class="list-group-item">Colour: <%= @product.colour ? @product.colour : "Not specified" %></li>
       <li class="list-group-item">$ <%= @product.price ? @product.price : 0 %></li>
     </ul>
   </div>
