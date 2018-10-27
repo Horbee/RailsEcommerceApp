@@ -5,5 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Product.create(name: "Console Created Laptop", description: "This is created using plain Rails console", image_url: "console.png")
-Product.create(name: "seed-generated product", description: "I also created this product without using the HTML form!", image_url: "seed.png")
+#Product.create(name: "Console Created Laptop", description: "This is created using plain Rails console", image_url: "console.png")
+#Product.create(name: "seed-generated product", description: "I also created this product without using the HTML form!", image_url: "seed.png")
+Order.create(user_id: 1, product_id: 1, total: 10.0)
+Order.create(user_id: 1, product_id: 2, total: 5.0)
+Order.create(user_id: 2, product_id: 4, total: 15.0)

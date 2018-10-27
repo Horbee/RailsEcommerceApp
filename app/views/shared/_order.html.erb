@@ -1,0 +1,27 @@
+<div class="card my-3">
+	<div class="card-header">
+		<div class="row">
+			<div class="col-sm">
+				<p>ORDER PLACED: <br><%= order.created_at.strftime("%d %B, %Y") %></p>
+			</div>
+			<div class="col-sm">
+				<p>TOTAL: <br><%= order.total %></p>
+			</div>
+			<div class="col-sm">
+				<p>DISPATCH TO: <br>User John</p>
+			</div>
+		</div>
+	</div>
+  	<div class="row">
+	    <div class="col-sm-3">
+	    	<%= image_tag(order.product.image_url, class: "img-fluid")%>
+	    </div>
+	    <div class="col-sm-9">
+	     	<h1><%= link_to "Order # #{order.id}", order %></h1>
+	    	<%= link_to order.product.name, order.product %>
+	      	<p><%= order.product.description %></p>
+	      	<strong>€ <%= order.product.price %></strong>
+	      	<button type="button" class="btn btn-danger mx-2">Buy it again</button>
+	    </div>
+	</div>
+</div>
