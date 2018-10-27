@@ -10,7 +10,7 @@ class SimplePagesController < ApplicationController
   end
 
   def landing_page
-    @featured_products = Product.limit(3)
+    @featured_products = Product.order("id").limit(3)
     # render layout: "products"
   end
 end
