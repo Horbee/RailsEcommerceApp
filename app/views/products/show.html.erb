@@ -1,7 +1,7 @@
-<p id="notice"><%= notice %></p>
-
-
 <div class="margin-top-75">
+  
+  <%= render partial: "shared/notice", locals: {notice: notice} %>
+
   <div class="card mb-3">
     <div class="product-show-img" style="background-image: url(<%= image_url(@product.image_url) %>);"></div>
     <div class="card-body">

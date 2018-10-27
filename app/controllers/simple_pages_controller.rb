@@ -1,5 +1,5 @@
 class SimplePagesController < ApplicationController
-	layout "products"
+	layout "different"
   def index
   end
 

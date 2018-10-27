@@ -1,6 +1,7 @@
-<p id="notice"><%= notice %></p>
-
 <div class="container content">
+  
+  <%= render partial: "shared/notice", locals: {notice: notice} %>
+
   <h1>Products</h1>
   <div class="row">
       <%= render partial: "shared/product", collection: @products %>
