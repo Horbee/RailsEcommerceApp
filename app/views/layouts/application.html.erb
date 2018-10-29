@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Testapp</title>
+    <title>Buy Laptops | <%= yield :page_title %></title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -31,19 +31,22 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <%= link_to "Home", root_path, class:'nav-link' %>
+                <%= link_to "Home", root_path, class:"nav-link #{yield(:home_active)}" %>
             </li>
             <li class="nav-item">
-                <%= link_to "About", simple_pages_about_path, class:'nav-link' %>
+                <%= link_to "About", simple_pages_about_path, class:"nav-link #{yield(:about_active)}" %>
             </li>
             <li class="nav-item">
-                <%= link_to "Contact", simple_pages_contact_path, class:'nav-link' %>
+                <%= link_to "Contact", simple_pages_contact_path, class:"nav-link #{yield(:contact_active)}" %>
             </li>
             <li class="nav-item">
-                <%= link_to "Products", products_path, class:'nav-link' %>
+                <%= link_to "Products", products_path, class:"nav-link #{yield(:product_active)}" %>
             </li>
             <li class="nav-item">
-                <%= link_to "New Product", new_product_path, class:'nav-link' %>
+                <%= link_to "New Product", new_product_path, class:"nav-link #{yield(:new_product_active)}" %>
+            </li>
+            <li class="nav-item">
+                <%= link_to "My Orders", orders_path, class:"nav-link #{yield(:order_active)}" %>
             </li>
           </ul>
         </div>

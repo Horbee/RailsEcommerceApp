@@ -1,3 +1,6 @@
+<% provide(:page_title, @product.name) %>
+<% provide(:product_active, "active") %>
+
 <div class="margin-top-75">
   
   <%= render partial: "shared/notice", locals: {notice: notice} %>

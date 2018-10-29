@@ -9,7 +9,7 @@
   <div class="carousel-inner">
     <% @featured_products.each do |product|%>
         <div class="carousel-item<%= " active" if product == @featured_products.first %>">
-            <%= image_tag(product.image_url, size: "1200x500") %>
+            <%= image_tag(product.image_url, class: "img-fluid carousel-image") %>
             <div class="carousel-caption d-none d-md-block">
                 <h1><%= product.name %></h1>
                 <p><%= product.description %></p>

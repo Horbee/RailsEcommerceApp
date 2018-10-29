@@ -1,12 +1,15 @@
+<% provide(:page_title, "Landing Page") %>
+<% provide(:home_active, "active") %>
+
 <div class="margin-top-75">
     <%= render partial: "shared/carousel" %>
 
-    <div class="jumbotron text-center">
+    <section class="jumbotron text-center">
         <h1 class="content-heading">Welcome to Buy Laptops</h1>
         <h2 class="content-subheading">The best resource of laptops on the planet!</h2>
         <div class="index-button">
             <%= image_tag('cart.png', size: '40x40')%>
             <%= link_to 'Enter Site', products_path, class:"btn btn-lg btn-primary" %>
         </div>
-    </div>
+    </section>
 </div>
