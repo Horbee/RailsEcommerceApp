@@ -28,28 +28,12 @@
         <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <%= link_to "Home", root_path, class:"nav-link #{yield(:home_active)}" %>
-            </li>
-            <li class="nav-item">
-                <%= link_to "About", simple_pages_about_path, class:"nav-link #{yield(:about_active)}" %>
-            </li>
-            <li class="nav-item">
-                <%= link_to "Contact", simple_pages_contact_path, class:"nav-link #{yield(:contact_active)}" %>
-            </li>
-            <li class="nav-item">
-                <%= link_to "Products", products_path, class:"nav-link #{yield(:product_active)}" %>
-            </li>
-            <li class="nav-item">
-                <%= link_to "New Product", new_product_path, class:"nav-link #{yield(:new_product_active)}" %>
-            </li>
-            <li class="nav-item">
-                <%= link_to "My Orders", orders_path, class:"nav-link #{yield(:order_active)}" %>
-            </li>
-          </ul>
+          <% if current_page?(controller: 'products', action: 'index') %>
+            <%= render partial: "shared/navbar_search" %>
+          <% else %>
+            <%= render partial: "shared/navbar" %>
+          <% end %>
         </div>
       </div>
     </nav> <!-- end navbar-->

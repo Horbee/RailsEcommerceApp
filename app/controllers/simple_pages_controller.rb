@@ -10,11 +10,4 @@ class SimplePagesController < ApplicationController
     @featured_products = Product.order("id").limit(3)
   end
 
-  def redirected
-  	render 'temp/redirected'
-  end
-
-  def alternative
-  	render 'temp/alternative'
-  end
 end

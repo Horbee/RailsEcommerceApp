@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
   
   # rerouting the landing page
-  root 'simple_pages#redirected'
+  root 'simple_pages#landing_page'
   
-  # the original landin page 
-	get '/landing', to: 'simple_pages#landing_page'
-	get '/alternative', to: 'simple_pages#alternative', as: 'alter'
   get 'simple_pages/contact'
   get 'simple_pages/about'
   

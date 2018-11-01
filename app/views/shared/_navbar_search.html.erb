@@ -1,0 +1,22 @@
+
+<ul class="navbar-nav ml-auto">
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Pages
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <%= link_to "About", simple_pages_about_path, class:"dropdown-item" %>
+          <%= link_to "Contact", simple_pages_contact_path, class:"dropdown-item" %>
+          <div class="dropdown-divider"></div>
+          <%= link_to "My Orders", orders_path, class:"dropdown-item" %>
+        </div>
+    </li>
+    <li class="nav-item">
+        <%= link_to "New Product", new_product_path, class:"nav-link #{yield(:new_product_active)}" %>
+    </li>
+</ul>
+
+<%= form_with(url: products_path, method: 'get', local: true, class: "form-inline my-2 my-lg-0") do |form| %>
+    <%= form.text_field :name, id:'search_name', value: params[:name], placeholder: "Search Product", class: "form-control mr-sm-2" %>
+    <%= form.submit 'Search', class: "btn btn-outline-success my-2 my-sm-0" %>
+<% end %>
