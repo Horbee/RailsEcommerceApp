@@ -1,7 +1,9 @@
 class UserMailer < ApplicationMailer
 
-	def contact_form(name, email, message)
+	def contact_email(name, email, subject, message)
+		@name = name
 		@message = message
+		@subject = subject
 		mail(
 			from: email,
 			to: "n.horox@gmail.com",
