@@ -8,7 +8,7 @@
 				<p>TOTAL: <br><%= order.total %></p>
 			</div>
 			<div class="col-sm">
-				<p>DISPATCH TO: <br>User John</p>
+				<p>DISPATCH TO: <br><%= "#{current_user.last_name}, #{current_user.first_name}" %></p>
 			</div>
 		</div>
 	</div>
@@ -22,7 +22,7 @@
 		    	<%= link_to order.product.name, order.product %>
 		      	<p><%= order.product.description %></p>
 		      	<strong>€ <%= order.product.price %></strong>
-		      	<button type="button" class="btn btn-danger mx-2">Buy it again</button>
+		      	<%= link_to 'Delete Order', order, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger mx-2" %>
 	    	</div>
 	    </div>
 	</div>

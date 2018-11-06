@@ -1,25 +1,27 @@
 <% provide(:page_title, @product.name) %>
 <% provide(:product_active, "active") %>
 
-<div class="margin-top-75">
   
-  <%= render partial: "shared/notice", locals: {notice: notice} %>
+<%= render partial: "shared/notice", locals: {notice: notice} %>
 
-  <div class="card mb-3">
-    <div class="product-show-img" style="background-image: url(<%= image_url(@product.image_url) %>);"></div>
-    <div class="card-body">
-      <h5 class="card-title"><%= @product.name %></h5>
-      <p class="card-text"><%= @product.description %></p>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Colour: <%= @product.colour ? @product.colour : "Not specified" %></li>
-      <li class="list-group-item">$ <%= @product.price ? @product.price : 0 %></li>
-    </ul>
+<div class="card mb-3">
+  <div class="product-show-img" style="background-image: url(<%= image_url(@product.image_url) %>);"></div>
+  <div class="card-body">
+    <h5 class="card-title"><%= @product.name %></h5>
+    <p class="card-text"><%= @product.description %></p>
   </div>
-  
-  <%= link_to 'Edit', edit_product_path(@product) %> |
-  <%= link_to 'Back', products_path %>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Colour: <%= @product.colour ? @product.colour : "Not specified" %></li>
+    <li class="list-group-item">$ <%= @product.price ? @product.price : 0 %></li>
+    <li class="list-group-item">
+    	<%= button_to 'Buy', {:controller => "orders", :action => "create", :product => @product } , :method=>:post, class: "btn btn-danger mx-2"  %>
+    </li>
+  </ul>
+
 </div>
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>
 
 
 

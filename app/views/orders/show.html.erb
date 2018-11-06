@@ -1,15 +1,13 @@
 <% provide(:page_title, "Order: #{@order.id}") %>
 <% provide(:order_active, "active") %>
 
-<div class="margin-top-75">
 
-	<h2>Order Information</h2>
-	<strong>Order ID: </strong><%= @order.id %>
-	<strong>Product Name: </strong><%= @order.product.name %>
-	<strong>Product Price: </strong><%= number_to_currency(@order.product.price/100.to_f) %>
-	<strong>Total Price: </strong><%= number_to_currency(@order.total/100.to_f) %>
+<h2>Order Information</h2>
+<strong>Order ID: </strong><%= @order.id %>
+<strong>Product Name: </strong><%= @order.product.name %>
+<strong>Product Price: </strong><%= number_to_currency(@order.product.price/100.to_f) %>
+<strong>Total Price: </strong><%= number_to_currency(@order.total/100.to_f) %>
 
-	<%= render partial: "shared/order", locals: {order: @order} %>
+<%= render partial: "shared/order", locals: {order: @order} %>
 
-	<%= link_to 'Back', orders_path %>
-</div>
+<%= link_to 'Back', orders_path %>
