@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
     has_many :orders
+    has_many :comments
 
     def self.search(attribute, value)
     	operator = "LIKE"
@@ -7,5 +8,13 @@ class Product < ApplicationRecord
     		operator = "ilike"
     	end
     	Product.where("#{attribute} #{operator} ?", "%#{value}%")
+    end
+
+    def highest_rating_comment
+    	comments.rating_desc.first
+    end
+
+    def lowest_rating_comment
+    	comments.rating_asc.first
     end
 end
