@@ -12,32 +12,38 @@
       </div>
     <% end %>
 
-    <div class="form-group">
-      <%= form.label :name, "The name of your product" %>
-      <%= form.text_field :name, class: "form-control" %>
-      <small class="form-text text-muted">You should give a short, but descrptive name.</small>
-    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <%= form.label :name, "The name of your product" %>
+          <%= form.text_field :name, class: "form-control" %>
+          <small class="form-text text-muted">You should give a short, but descrptive name.</small>
+        </div>
 
-    <div class="form-group">
-      <%= form.label :description, "Give it a description" %>
-      <%= form.text_area :description, class: "form-control", rows: "10" %>
-    </div>
+        <div class="form-row">
+          <div class="col-sm-12 col-md-6">
+            <%= form.label :colour, "Colour" %>
+            <%= form.text_field :colour, class: "form-control" %>
+          </div>
 
-    <div class="form-row">
-      <div class="col-sm-12 col-md-6">
-        <%= form.label :colour, "The Colour of the Product" %>
-        <%= form.text_field :colour, class: "form-control" %>
-      </div>
+          <div class="col-sm-12 col-md-6">
+            <%= form.label :price, "Price" %>
+            <%= form.text_field :price, class: "form-control" %>
+          </div>
+        </div>
 
-      <div class="col-sm-12 col-md-6">
-        <%= form.label :price, "The Price of the Product" %>
-        <%= form.text_field :price, class: "form-control" %>
-      </div>
-    </div>
+        <div class="form-group">
+          <%= form.label :image_url %>
+          <%= form.text_field :image_url, class: "form-control" %>
+        </div>
+      </div><!-- Tcol-md-3 -->
 
-    <div class="form-group">
-      <%= form.label :image_url %>
-      <%= form.text_field :image_url, class: "form-control" %>
+      <div class="col-md-9">
+        <div class="form-group">
+          <%= form.label :description, "Give it a description" %>
+          <%= form.text_area :description, class: "form-control", rows: "10" %>
+        </div>
+      </div><!-- col-md-9 -->
     </div>
 
     <div class="actions">

@@ -7,7 +7,7 @@
     <% end %>
     <div class="card-body">
       <h5 class="card-title"><%= product.name %></h5>
-      <p class="card-text"><%= product.description %></p>
+      <p class="card-text"><%= strip_tags(product.description).truncate(80) %></p>
       <ul class="list-group list-group-flush mb-2">
         <li class="list-group-item">Colour: <%= product.colour ? product.colour : "Not specified" %></li>
         <li class="list-group-item">$ <%= product.price ? product.price : 0 %></li>
