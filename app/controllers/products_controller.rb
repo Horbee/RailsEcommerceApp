@@ -31,6 +31,9 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
+    if @product.image_url == ""
+      @product.image_url = "placeholder.jpg"
+    end
 
     respond_to do |format|
       if @product.save

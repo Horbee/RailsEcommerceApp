@@ -1,22 +1,12 @@
 <section class="mb-2">
   <%= form_with(model: product, local: true) do |form| %>
-    <% if product.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
-
-        <ul>
-        <% product.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
+    <%= render 'shared/validations', my_model: product %>
 
     <div class="row">
       <div class="col-md-3">
         <div class="form-group">
-          <%= form.label :name, "The name of your product" %>
-          <%= form.text_field :name, class: "form-control" %>
+          <%= form.label :name, "The name of your product *" %>
+          <%= form.text_field :name, class: "form-control", required: true %>
           <small class="form-text text-muted">You should give a short, but descrptive name.</small>
         </div>
 
@@ -27,8 +17,8 @@
           </div>
 
           <div class="col-sm-12 col-md-6">
-            <%= form.label :price, "Price" %>
-            <%= form.text_field :price, class: "form-control" %>
+            <%= form.label :price, "Price *" %>
+            <%= form.text_field :price, class: "form-control", required: true %>
           </div>
         </div>
 
@@ -36,11 +26,13 @@
           <%= form.label :image_url %>
           <%= form.text_field :image_url, class: "form-control" %>
         </div>
+
+        <p>Fields marked with * are required</p>
       </div><!-- Tcol-md-3 -->
 
       <div class="col-md-9">
         <div class="form-group">
-          <%= form.label :description, "Give it a description" %>
+          <%= form.label :description, "Give it a description *" %>
           <%= form.text_area :description, class: "form-control", rows: "10" %>
         </div>
       </div><!-- col-md-9 -->

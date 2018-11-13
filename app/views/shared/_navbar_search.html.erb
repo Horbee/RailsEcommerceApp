@@ -7,13 +7,17 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <%= link_to "About", simple_pages_about_path, class:"dropdown-item" %>
           <%= link_to "Contact", simple_pages_contact_path, class:"dropdown-item" %>
-          <div class="dropdown-divider"></div>
-          <%= link_to "My Orders", orders_path, class:"dropdown-item" %>
+          <% if signed_in? %>
+            <div class="dropdown-divider"></div>
+            <%= link_to "My Orders", orders_path, class:"dropdown-item" %>
+          <% end %>
         </div>
     </li>
-    <li class="nav-item">
-        <%= link_to "New Product", new_product_path, class:"nav-link #{yield(:new_product_active)}" %>
-    </li>
+    <% if signed_in? %>
+      <li class="nav-item">
+          <%= link_to "New Product", new_product_path, class:"nav-link #{yield(:new_product_active)}" %>
+      </li>
+    <% end %>
 </ul>
 
 <%= form_with(url: products_path, method: 'get', local: true, class: "form-inline my-2 my-lg-0") do |form| %>

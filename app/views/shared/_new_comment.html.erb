@@ -4,15 +4,15 @@
 
 		<div class="form-group"> 
 	      <%= f.label :title, "Title" %><br>
-	      <%= f.text_field :title, class: "form-control" %>
+	      <%= f.text_field :title, class: "form-control", required: true %>
 	    </div>
 
 		<div class="form-group">
 	      <%= f.label :body, "Comments" %><br>
-	      <%= f.text_area :body, rows: 5, class: "form-control" %>
+	      <%= f.text_area :body, rows: 5, class: "form-control", required: true %>
 	    </div>
 
-	    <div class="rating mb-2"></div>
+	    <div class="rating mb-2" data-score="1"></div>
 
 	    <div class="form-group">
 	      <%= f.submit "Submit", class:"btn btn-success" %>
