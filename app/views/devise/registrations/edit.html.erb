@@ -19,7 +19,7 @@
           <% if current_user.confirmed? %>
             <small class="text-muted">Your E-mail address is confirmed.</small>
           <% else %>
-            <div>Currently waiting confirmation for: <%= resource.email %></div>
+            <div class="text-center text-danger">Currently waiting confirmation for: <%= resource.email %></div>
           <% end %>
         <% end %>
       </div>
