@@ -14,11 +14,17 @@
       <div class="form-group">
         <%= f.label :email %><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        
+        <% if devise_mapping.confirmable? %>
+          <% if current_user.confirmed? %>
+            <small class="text-muted">Your E-mail address is confirmed.</small>
+          <% else %>
+            <div>Currently waiting confirmation for: <%= resource.email %></div>
+          <% end %>
+        <% end %>
       </div>
 
-      <% if devise_mapping.confirmable? && !current_user.confirmed? %>
-        <div>Currently waiting confirmation for: <%= resource.email %></div>
-      <% end %>
+      
 
       <div class="form-row">
         <div class="form-group col">
