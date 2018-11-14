@@ -4,6 +4,7 @@ class Product < ApplicationRecord
     validates :name, presence: true
     validates :description, presence: true
     validates :price, presence: true
+    before_save :set_image_url
 
     def self.search(attribute, value)
     	operator = "LIKE"
@@ -23,5 +24,10 @@ class Product < ApplicationRecord
 
     def average_rating
         comments.average(:rating).to_f
+    end
+
+    private
+    def set_image_url
+        self.image_url = "placeholder.jpg" if self.image_url.empty?
     end
 end

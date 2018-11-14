@@ -25,6 +25,7 @@
   </head>
   <body>
     <!-- Navigation Section -->
+    <section class="navi">
     <nav class="navbar fixed-top navbar-expand-lg" role="navigation">
       <div class="container">
         <%= link_to image_tag('logo.png'), root_path %>
@@ -57,7 +58,8 @@
         </div>
       </div>
     </nav> <!-- end navbar-->
-
+    </section>
+    
     <div class="container">
         <%= render partial: "shared/alert", locals: {alert: alert} %>
         <%= yield %>

@@ -12,5 +12,5 @@ class Comment < ApplicationRecord
   scope :rating_desc, -> { order(rating: :desc) }
   scope :rating_asc, -> { order(rating: :asc) }
 
-  self.per_page = 3
+  paginates_per 3
 end

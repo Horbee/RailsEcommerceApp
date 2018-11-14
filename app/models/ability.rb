@@ -14,9 +14,12 @@ class Ability
     if user.confirmed?
         can :create, Comment
         can :cud, Product
+
+        if user.admin? 
+            can :manage, :all # to destroy comments and manage everything
+        end
     end
-    #   if user.admin?
-    #     can :manage, :all
+
     #   else
     #     can :read, :all
     #   end
