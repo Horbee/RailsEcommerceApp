@@ -1,20 +1,19 @@
 <div class="col-sm-12 col-md-6 col-lg-4 my-2 d-flex justify-content-center">
   <div class="card" style="width: 18rem;">
-    <% if product.image_url == nil %>
-      <%= image_tag("placeholder.jpg", size: '286x180', class: "card-img-top")%>
-    <% else %>
-      <%= image_tag(product.image_url, size: '286x180', class: "card-img-top")%>
-    <% end %>
+    <%= image_tag(product.image_url, size: '286x180', class: "card-img-top")%>
     <div class="card-body">
       <h5 class="card-title"><%= product.name %></h5>
-      <p class="card-text"><%= product.description %></p>
+      <p class="card-text"><%= strip_tags(product.description).truncate(80) %></p>
       <ul class="list-group list-group-flush mb-2">
         <li class="list-group-item">Colour: <%= product.colour ? product.colour : "Not specified" %></li>
         <li class="list-group-item">$ <%= product.price ? product.price : 0 %></li>
       </ul>
       <%= link_to 'Show', product, class: "btn btn-primary" %>
-      <%= link_to 'Edit', edit_product_path(product), class: "btn btn-primary" %>
-      <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
+
+      <% if signed_in? %>
+        <%= link_to 'Edit', edit_product_path(product), class: "btn btn-primary" %>
+        <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
+      <% end %>
     </div>
   </div>
 </div>

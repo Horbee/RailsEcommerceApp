@@ -43,10 +43,10 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to edit_user_registration_path, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
-        format.html { render :edit }
+        format.html { redirect_to edit_user_registration_path, alert: "Error: Image must be a jpeg or png"  }# redirect_to edit_user_registration_path, errors: @user.errors }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -62,6 +62,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def after_confirmation
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -70,6 +73,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name)
+      params.require(:user).permit(:first_name, :last_name, :avatar)
     end
 end

@@ -11,9 +11,11 @@
       <%= render partial: "shared/product", collection: @products %>
   </div>
 
-  <div class="row">
-    <%= link_to 'New Product', new_product_path, class: "btn btn-lg btn-primary" %>
-  </div>
+  <% if signed_in? %>
+	  <div class="row">
+	    <%= link_to 'New Product', new_product_path, class: "btn btn-lg btn-primary" %>
+	  </div>
+  <% end %>
 </div>
 
 

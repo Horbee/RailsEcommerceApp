@@ -2,12 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.product-show-img{
-    display: block;
-    height: 490px;
-    background-position: 100% 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
+.box {
+	border-radius: 4px;
+	border: 1px #ddd solid;
+	background-color: #fff;
+	padding: 10px 14px;
 }
 
 .clearfix {
@@ -25,3 +24,4 @@
 	    background-position: 50% 50%;
 	}
 }
+

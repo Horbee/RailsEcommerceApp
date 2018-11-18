@@ -1,19 +1,32 @@
 Rails.application.routes.draw do
   
  
+  namespace :admin do
+      resources :users
+      resources :comments
+      resources :orders
+      resources :products
+
+      root to: "users#index"
+    end
   # rerouting the landing page
   root 'simple_pages#landing_page'
   
   get 'simple_pages/contact'
   get 'simple_pages/about'
   
+  get '/after_confirmation', to: 'users#after_confirmation'
+
   post 'simple_pages/thank_you'
-
-  devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }, controllers: { registrations: 'users/registrations' }
-  resources :users
-  resources :products
-  resources :orders, only:[:index, :show, :destroy]
-
   post 'orders/create', as: 'create_order'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  # nested resource
+  resources :products do
+    resources :comments
+  end
+
+  resources :users
+  resources :orders, only:[:index, :show, :destroy]
+  devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' },
+        controllers: { registrations: 'users/registrations', confirmations: 'users/confirmations' }
 end
