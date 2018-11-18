@@ -14,8 +14,6 @@ class Ability
     if user.confirmed?
         can :create, Comment
         can :cud, Product
-
-        
     end
 
     if user.admin? 

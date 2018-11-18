@@ -10,8 +10,20 @@
                 <% end %>
             </p>
             <div class="rated mb-2" data-score="<%= comment.rating %>"></div>
-            <h5><%= comment.title %></h5>
-            <p><%= comment.body %></p>
+            
+            <div class="media">
+                <% if comment.user.avatar.attached? == false %>
+                    <%= image_tag('default_profile.png', size: "64x64", class: "mr-3") %>
+                <% else %>
+                    <%= image_tag(comment.user.avatar, size:"64x64", class: "mr-3") %>
+                <% end %>
+
+                <div class="media-body">
+                    <h5 class="mt-0"><%= comment.title %></h5>
+                    <%= comment.body %>
+                </div>
+            </div>
+
         </div>
 	<% end %>
 </div>
