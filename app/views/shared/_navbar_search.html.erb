@@ -20,6 +20,7 @@
     <% end %>
 </ul>
 
+
 <%= form_with(url: products_path, method: 'get', local: true, class: "form-inline my-2 my-lg-0") do |form| %>
     <%= form.text_field :name, id:'search_name', value: params[:name], placeholder: "Search Product", class: "form-control mr-sm-2" %>
     <%= form.submit 'Search', class: "btn btn-outline-success my-2 my-sm-0" %>
