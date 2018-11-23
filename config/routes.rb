@@ -2,13 +2,14 @@ Rails.application.routes.draw do
   
  
   namespace :admin do
-      resources :users
-      resources :comments
-      resources :orders
-      resources :products
+    resources :users
+    resources :comments
+    resources :orders
+    resources :products
 
-      root to: "users#index"
-    end
+    root to: "users#index"
+  end
+  
   # rerouting the landing page
   root 'simple_pages#landing_page'
   
