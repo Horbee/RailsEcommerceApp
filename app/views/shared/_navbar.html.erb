@@ -9,12 +9,4 @@
     <li class="nav-item">
         <%= link_to "Products", products_path, class:"nav-link #{yield(:product_active)}" %>
     </li>
-    <% if signed_in? %>
-        <li class="nav-item">
-            <%= link_to "New Product", new_product_path, class:"nav-link #{yield(:new_product_active)}" %>
-        </li>
-        <li class="nav-item">
-            <%= link_to "My Orders", orders_path, class:"nav-link #{yield(:order_active)}" %>
-        </li>
-    <% end %>
 </ul>

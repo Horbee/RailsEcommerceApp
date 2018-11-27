@@ -1,0 +1,9 @@
+<script
+  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+  data-image="<%= image_url(@product.image_url) %>"
+  data-name="<%= @product.name %>"
+  data-description="<%= strip_tags(@product.description) %>"
+  data-amount="<%= @product.price %>">
+  data-currency="eur">
+</script>

@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col-md-8">
+
+    <form>
+      <div class="form-row">
+        <div class="col">
+          <label for="promo-code">Enter a promotional code</label>
+          <input id="promo-code" type="text" name="promo-code" maxlength="5" class="promo-code-field form-control">
+        </div>
+        <div class="col pt-4">
+          <button class="btn btn-primary">Apply</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="basket-labels">
+      <ul>
+        <div class="row">
+          <div class="col-md-6">
+              <li class="item item-heading">Item</li>
+          </div>
+          <div class="col-md-2">
+            <li class="price">Price</li>
+          </div>
+          <div class="col-md-2">
+            <li class="quantity">Quantity</li>
+          </div>
+          <div class="col-md-2">
+            <li class="subtotal">Subtotal</li>
+          </div>
+        </div>
+      </ul>
+    </div>
+
+    <!-- products -->
+    <div class="row mt-3 product-row">
+      <div class="col-md-3">
+        <% product = Product.first %>
+        <%= link_to image_tag(product.image_url, size: '286x180', class: "img-fluid"), product%>
+      </div>
+      <div class="col-md-3">
+        <h5>Awesome Laptop</h5>
+        <p>This is a legendary laptop, and you can do absolutely every job with it</p>
+      </div>
+      <div class="col-md-2">
+        <p>$26.00</p>
+      </div>
+      <div class="col-md-2">
+        <input type="number" value="4" min="1" class="quantity-field">
+      </div>
+      <div class="col-md-2">
+        <p>$100.00</p>
+        <button class="btn btn-outline-danger">Remove</button>
+      </div>
+    </div>
+    
+  </div>
+
+  <!-- Render Aside Cart from partials -->
+  <div class="col-md-4">
+    <%= render "shared/aside_cart" %>
+  </div>
+
+</div>

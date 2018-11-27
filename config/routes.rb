@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   
   get 'simple_pages/contact'
   get 'simple_pages/about'
+  get 'simple_pages/cart'
   
   get '/after_confirmation', to: 'users#after_confirmation'
 

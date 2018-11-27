@@ -4,6 +4,8 @@
   
 <%= render partial: "shared/notice", locals: {notice: notice} %>
 
+
+
 <div class="row">
   <div class="col-md-4 mt-5">
     <%= image_tag(@product.image_url, class: "img-fluid") %>  
@@ -12,16 +14,20 @@
     <h3 class="card-title"><%= @product.name %></h3>
     <p class="card-text"><%= @product.description.html_safe %></p>
     <li class="list-group-item">Colour: <%= @product.colour ? @product.colour : "Not specified" %><i class="ml-2 fas fa-palette"></i></li>
-    <li class="list-group-item">Price: EUR <%= @product.price ? @product.price : 0 %><i class="ml-2 fas fa-shopping-cart"></i></li>
+    <li class="list-group-item">Price: EUR <%= @product.converted_price %><i class="ml-2 fas fa-shopping-cart"></i></li>
     <p class="mt-2">Average Rating: <div class="rated" data-score="<%= @product.average_rating %>"></div></p>
+    <%= form_with(url: '/payments/create') do |form| %>
+      <%= render partial: "shared/stripe_checkout_button" %>
+    <% end %>
   </div>
   <div class="col-md-2 box">
     <%= button_to 'Buy now' , {:controller => "orders", :action => "create", :product => @product } , :method=>:post, class: "btn btn-danger btn-block"  %>
     <div class="text-center mt-3">
-      <%= link_to 'Edit', edit_product_path(@product) %> |
+      <% if signed_in? && current_user.admin? %>
+        <%= link_to 'Edit', edit_product_path(@product) %> |
+      <% end %>
       <%= link_to 'Back', products_path %> 
     </div>
-   
   </div>
 </div>
 

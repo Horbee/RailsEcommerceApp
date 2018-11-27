@@ -21,7 +21,7 @@
 		     	<h1><%= link_to "Order # #{order.id}", order %></h1>
 		    	<%= link_to order.product.name, order.product %>
 		      	<p><%= strip_tags(order.product.description) %></p>
-		      	<strong>€ <%= order.product.price %></strong>
+		      	<strong>€ <%= order.product.converted_price %></strong>
 		      	<%= link_to 'Delete Order', order, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger mx-2" %>
 	    	</div>
 	    </div>

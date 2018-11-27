@@ -14,6 +14,10 @@ class Product < ApplicationRecord
     	Product.where("#{attribute} #{operator} ?", "%#{value}%")
     end
 
+    def converted_price
+        self.price.to_d / 100
+    end
+
     def highest_rating_comment
     	comments.rating_desc.first
     end

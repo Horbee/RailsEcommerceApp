@@ -17,8 +17,9 @@
           </div>
 
           <div class="col-sm-12 col-md-6">
-            <%= form.label :price, "Price *" %>
+            <%= form.label :price, "Price in cents*" %>
             <%= form.text_field :price, class: "form-control", required: true %>
+            <small class="form-text text-muted">Add a price without a separator in cents</small>
           </div>
         </div>
 

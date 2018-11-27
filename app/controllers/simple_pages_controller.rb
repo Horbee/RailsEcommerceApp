@@ -18,4 +18,7 @@ class SimplePagesController < ApplicationController
   	UserMailer.contact_email(@name, @email, @subject, @message).deliver_now
   end
 
+  def cart
+  end
+
 end

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <!-- Google Fonts -->
@@ -26,40 +28,49 @@
   <body>
     <!-- Navigation Section -->
     <section class="navi">
-    <nav class="navbar fixed-top navbar-expand-lg" role="navigation">
-      <div class="container">
-        <%= link_to image_tag('logo.png'), root_path %>
-        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <% if user_signed_in? %>
-                <li class="nav-item">
-                  <%= link_to(current_user.first_name, edit_user_registration_path, class: "nav-link") %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to('Logout', destroy_user_session_path, method: :delete, class: "nav-link") %>
-                </li>
+      <nav class="navbar fixed-top navbar-expand-lg" role="navigation">
+        <div class="container">
+          <%= link_to image_tag('logo.png'), root_path, class: "d-none d-md-block" %>
+          <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <% if user_signed_in? %>
+                  <%= render "shared/navbar_user" %>
+              <% else %>
+                  <li class="nav-item">
+                    <%= link_to('Login', new_user_session_path, class: "nav-link") %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to('Register', new_user_registration_path, class: "nav-link") %>
+                  </li>
+              <% end %>
+            </ul>
+            <% if current_page?(controller: '/products', action: 'index') %>
+              <%= render partial: "shared/navbar_search" %>
             <% else %>
-                <li class="nav-item">
-                  <%= link_to('Login', new_user_session_path, class: "nav-link") %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to('Register', new_user_registration_path, class: "nav-link") %>
-                </li>
+              <%= render partial: "shared/navbar" %>
             <% end %>
-          </ul>
-          <% if current_page?(controller: '/products', action: 'index') %>
-            <%= render partial: "shared/navbar_search" %>
-          <% else %>
-            <%= render partial: "shared/navbar" %>
+            </ul>
+          </div>
+
+          <% if signed_in? %>
+          <!-- Shopping cart icon -->
+          <div class="cart-nav-icon">
+            <span id="cart-icon"><i class="fas fa-shopping-cart"></i></span>
+          </div>
           <% end %>
-        </div>
-      </div>
-    </nav> <!-- end navbar-->
-    </section>
+
+        </div> <!-- end of container -->
+      </nav> 
+    </section> <!-- end navbar-->
     
+    <!-- The fixed shopping cart on other pages than simple_pages/cart -->
+    <div class="fixed-cart">
+      <%= render "shared/aside_cart" if current_page?(controller: '/simple_pages', action: 'cart') == false %>
+    </div>
+
     <div class="container">
         <%= render partial: "shared/alert", locals: {alert: alert} %>
         <%= yield %>

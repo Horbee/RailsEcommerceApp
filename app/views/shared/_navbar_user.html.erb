@@ -1,0 +1,28 @@
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="dropUser" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <% if current_user.avatar.attached? == false %>
+        <%= image_tag('default_profile.png', size: "40x40") %>
+    <% else %>
+        <%= image_tag(current_user.avatar, size:"40x40", class: "navbar-avatar") %>
+    <% end %>
+    <%= current_user.first_name %>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="dropUser">
+    <%= link_to "Dashboard", edit_user_registration_path, class:"dropdown-item" %>
+    <%= link_to "My Cart", simple_pages_contact_path, class:"dropdown-item" %>
+    <%= link_to "My Orders", orders_path, class:"dropdown-item" %>
+    <div class="dropdown-divider"></div>
+    <%= link_to "Logout", destroy_user_session_path, method: :delete, class:"dropdown-item" %>
+    </div>
+</li>
+<% if current_user.admin? %>
+    <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="dropAdmin" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Admin
+    </a>
+    <div class="dropdown-menu" aria-labelledby="dropAdmin">
+        <%= link_to "Admin Panel", admin_root_path, class:"dropdown-item" %>
+        <%= link_to "New Product", new_product_path, class:"dropdown-item" %>
+    </div>
+    </li>
+<% end %>
