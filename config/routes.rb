@@ -16,11 +16,12 @@ Rails.application.routes.draw do
   get 'simple_pages/contact'
   get 'simple_pages/about'
   get 'simple_pages/cart'
-  
   get '/after_confirmation', to: 'users#after_confirmation'
+  get 'payments/after', as: 'after_payments'
 
   post 'simple_pages/thank_you'
   post 'orders/create', as: 'create_order'
+  post 'payments/create', as: 'payments'
 
   # nested resource
   resources :products do
