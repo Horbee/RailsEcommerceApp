@@ -10,7 +10,7 @@ class UserMailer < ApplicationMailer
 			subject: "A new contact form email from #{name}")
 	end
 
-	def order_recieved_email(email, name, order)
+	def order_received_email(email, name, order)
 		@name = name
 		@order = order
 		mail(

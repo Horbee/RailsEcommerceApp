@@ -21,7 +21,8 @@
 
 $( document ).on('turbolinks:load', function() {
   $('#notice').delay(3000).fadeOut(1000);
-  $('#alert').delay(3000).fadeOut(1000);
+  $('#success').delay(3000).fadeOut(1000);
+  $('#warning').delay(3000).fadeOut(1000);
   tinymce.remove();
   tinymce.init({ 
   	selector:'textarea#product_description',

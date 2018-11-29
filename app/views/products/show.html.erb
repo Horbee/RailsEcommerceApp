@@ -1,11 +1,6 @@
 <% provide(:page_title, @product.name) %>
 <% provide(:product_active, "active") %>
 
-  
-<%= render partial: "shared/notice", locals: {notice: notice} %>
-
-
-
 <div class="row">
   <div class="col-md-4 mt-5">
     <%= image_tag(@product.image_url, class: "img-fluid") %>  
