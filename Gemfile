@@ -49,8 +49,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.8'
   gem 'rails-controller-testing'
   gem 'factory_bot_rails'
-  gem 'ruby-debug-ide', '~> 0.6.1'
-  gem 'debase', '~> 0.2.2'
 end
 
 group :development do
