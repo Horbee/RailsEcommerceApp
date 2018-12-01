@@ -40,7 +40,7 @@
     <% if resource.avatar.attached? == false %>
       <%= image_tag('default_profile.png', size: "100x100") %>
     <% else %>
-      <%= image_tag(resource.avatar, size: "100x100") %>
+      <%= image_tag resource.avatar.variant(resize: "100x100") %>
     <% end %>
 
     <div class="form-group">
@@ -79,6 +79,33 @@
         <%= f.submit "Update Password", class: "btn btn-success" %>
       </div>
     <% end %>
+
+    <div class="dropdown-divider"></div>
+    <h3>Admin Rights</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <% if current_user.admin? %>
+          <p class="text-success">You are already an admin</p>
+        <% else %>
+          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#adminModal">
+              Request Admin Rights
+          </button>
+        <% end %>
+      </div>
+      <div class="col-md-6">
+        <% if current_user.admin? %>
+          <p>Your have right to: </p>
+          <ul>
+            <li>access the admin panel and manage databases</li>
+            <li>add new product and manage them</li>
+            <li>delete spam comments</li>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+
+    <%= render 'shared/reqadmin_modal' %>
+    
 
     <div class="dropdown-divider"></div>
     <h3>Cancel my account</h3>

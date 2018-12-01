@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   post 'simple_pages/thank_you'
   post 'orders/create', as: 'create_order'
   post 'payments/create', as: 'payments'
+  post 'request_admin_rights', to: 'users#request_admin_rights'
 
   # nested resource
   resources :products do

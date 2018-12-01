@@ -65,6 +65,14 @@ class UsersController < ApplicationController
   def after_confirmation
   end
 
+  # POST
+  def request_admin_rights
+    @message = params[:message]
+    UserMailer.admin_rights_requested(current_user, @message, Time.now).deliver_now
+    flash[:success] = "Your request has been sent."
+    redirect_to edit_user_registration_path(current_user)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
