@@ -1,10 +1,11 @@
 class CommentsController < ApplicationController
 	before_action :authenticate_user!
-    load_and_authorize_resource
+  load_and_authorize_resource
     
 	def create
 		@product = Product.find(params[:product_id])
 		@comment = @product.comments.new(comment_params)
+		byebug
 		@comment.user = current_user
 
 		respond_to do |format|
