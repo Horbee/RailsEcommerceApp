@@ -87,7 +87,7 @@
         <% if current_user.admin? %>
           <p class="text-success">You are already an admin</p>
         <% else %>
-          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#adminModal">
+          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#adminModal" <%= current_user.confirmed? ? "" : "disabled" %> >
               Request Admin Rights
           </button>
         <% end %>

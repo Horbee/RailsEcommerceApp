@@ -12,6 +12,20 @@ class User < ApplicationRecord
 	validates :last_name, presence: true
 	validate :correct_image_type
 
+	@@cart = []
+
+	def cart
+		return @@cart
+	end
+
+	def add_item_to_cart(product)
+		@@cart.push(product)
+	end
+
+	def remove_item_from_cart(product)
+		@@cart.delete(product)
+	end
+
 	private
 	def correct_image_type
 		if avatar.attached? && !avatar.content_type.in?(%w(image/jpeg image/png))

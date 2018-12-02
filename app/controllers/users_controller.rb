@@ -67,9 +67,14 @@ class UsersController < ApplicationController
 
   # POST
   def request_admin_rights
-    @message = params[:message]
-    UserMailer.admin_rights_requested(current_user, @message, Time.now).deliver_now
-    flash[:success] = "Your request has been sent."
+    if current_user.confirmed?
+      @message = params[:message]
+      UserMailer.admin_rights_requested(current_user, @message, Time.now).deliver_now
+      flash[:success] = "Your request has been sent."
+    else
+      flash[:alert] = "You have to confirm your E-Mail first"
+    end
+
     redirect_to edit_user_registration_path(current_user)
   end
 

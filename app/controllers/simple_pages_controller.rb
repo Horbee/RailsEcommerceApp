@@ -19,6 +19,7 @@ class SimplePagesController < ApplicationController
   end
 
   def cart
+    byebug
   end
 
 end
