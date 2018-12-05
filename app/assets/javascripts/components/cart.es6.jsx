@@ -72,7 +72,7 @@ class Cart extends React.Component {
         <li className="list-group-item list-group-item-light" key={product.id}>
           <span className="item-name" onClick={() => this.handleDelete(product.id)}>{product.product_name}</span>
           <br /><span>#{product.quantity}</span>
-          <span className="float-right">${product.total_price}</span>
+          <span className="float-right">${product.total_price * 0.01}</span>
         </li>
       )
     });
