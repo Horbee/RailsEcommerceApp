@@ -89,7 +89,7 @@ class Cart extends React.Component {
         
         <div className="dropdown-divider"></div>
         <p className="cart-total font-weight-bold float-left">TOTAL</p>
-        <p className="cart-value float-right text-right">${price}</p>
+        <p className="cart-value float-right text-right">${price * 0.01}</p>
         <div className="clearfix"></div>
         <div className="dropdown-divider"></div>
         <a href={this.props.checkout ? "/" : "/simple_pages/cart"} className="btn btn-success btn-block">CHECKOUT</a>
