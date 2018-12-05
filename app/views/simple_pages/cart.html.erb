@@ -33,32 +33,33 @@
     </div>
 
     <!-- products -->
+    <% @cart_line_items.each do |item| %>
     <div class="row mt-3 product-row">
       <div class="col-md-3">
-        <% product = Product.first %>
+        <% product = item.product %>
         <%= link_to image_tag(product.image_url, size: '286x180', class: "img-fluid"), product%>
       </div>
       <div class="col-md-3">
-        <h5>Awesome Laptop</h5>
-        <p>This is a legendary laptop, and you can do absolutely every job with it</p>
+        <h5><%= product.name %></h5>
+        <p><%= product.description %></p>
       </div>
       <div class="col-md-2">
-        <p>$26.00</p>
+        <p>$<%= product.price %></p>
       </div>
       <div class="col-md-2">
-        <input type="number" value="4" min="1" class="quantity-field">
+        <input type="number" value=<%= item.quantity %> min="1" class="quantity-field">
       </div>
       <div class="col-md-2">
-        <p>$100.00</p>
+        <p>$<%= item.quantity * product.price %></p>
         <button class="btn btn-outline-danger">Remove</button>
       </div>
     </div>
-    
+    <% end %>
   </div>
 
   <!-- Render Aside Cart from partials -->
   <div class="col-md-4">
-    <%= render "shared/aside_cart" %>
+    <%= render partial: "shared/aside_cart", locals: { checkout: true} %>
   </div>
 
 </div>

@@ -2,6 +2,9 @@ class Product < ApplicationRecord
     has_many :line_items
     has_many :orders, through: :line_items, dependent: :destroy
     has_many :comments, dependent: :destroy
+    has_many :cart_line_items
+    has_many :carts, through: :cart_line_items, dependent: :destroy
+
     validates :name, presence: true
     validates :description, presence: true
     validates :price, presence: true

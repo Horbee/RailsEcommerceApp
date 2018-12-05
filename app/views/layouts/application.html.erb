@@ -68,7 +68,7 @@
     
     <!-- The fixed shopping cart on other pages than simple_pages/cart -->
     <div class="fixed-cart">
-      <%= render "shared/aside_cart" if current_page?(controller: '/simple_pages', action: 'cart') == false %>
+      <%= render partial: "shared/aside_cart", locals: { checkout: false } if current_page?(controller: '/simple_pages', action: 'cart') == false %>
     </div>
 
     <div class="container">

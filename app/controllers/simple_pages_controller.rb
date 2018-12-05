@@ -19,7 +19,7 @@ class SimplePagesController < ApplicationController
   end
 
   def cart
-    byebug
+    @cart_line_items = Cart.find(current_user.id).cart_line_items
   end
 
 end

@@ -14,7 +14,7 @@
         <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
       <% end %>
       <ul class="list-group list-group-flush mt-2">
-        <%= button_to "Add To Cart", :method=> current_user.add_item_to_cart(product), class: "btn btn-success" %>
+        <%= react_component 'AddButton', product_id: product.id %>
       </ul>
     </div>
   </div>
