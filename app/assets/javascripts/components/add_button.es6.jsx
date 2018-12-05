@@ -11,7 +11,7 @@ class AddButton extends React.Component {
 
     let body = JSON.stringify({id: this.props.product_id })
     
-    fetch('http://localhost:3000/api/v1/carts', {
+    fetch('/api/v1/carts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -35,7 +35,7 @@ class Cart extends React.Component {
   handleDelete(id){
     const token = $('meta[name="csrf-token"]').attr('content');
 
-    fetch(`http://localhost:3000/api/v1/carts/${id}`, 
+    fetch(`/api/v1/carts/${id}`, 
     {
       method: 'DELETE',
       headers: {
