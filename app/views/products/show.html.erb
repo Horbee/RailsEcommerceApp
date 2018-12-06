@@ -3,7 +3,7 @@
 
 <div class="row">
   <div class="col-md-4 mt-5">
-    <%= image_tag(@product.image_url, class: "img-fluid") %>  
+    <%= image_tag(@product.image_url, class: "img-fluid img-zoom", data: { zoom_image: asset_path(@product.image_url) }) %>  
   </div>
   <div class="col-md-6">
     <h3 class="card-title"><%= @product.name %></h3>
@@ -19,7 +19,7 @@
     <% end %>
   </div>
   <div class="col-md-2 box">
-    <%= react_component 'AddButton' %>
+    <%= react_component 'AddButton', product_id: @product.id %>
     <div class="text-center mt-3">
       <% if signed_in? && current_user.admin? %>
         <%= link_to 'Edit', edit_product_path(@product) %> |
@@ -39,5 +39,4 @@
 <%= render "shared/comments" %>
 
 <%= paginate @comments %>
-
 

@@ -8,8 +8,8 @@ class Api::V1::CartsController < ApplicationController
 
   def create
     product = Product.find(params[:id])
-    @cart.add_product(product)
-    render json: product
+    cart_line_item = @cart.add_product(product)
+    render json: cart_line_item
   end
 
   def destroy

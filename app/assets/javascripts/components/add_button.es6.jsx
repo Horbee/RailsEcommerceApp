@@ -7,6 +7,7 @@ class AddButton extends React.Component {
   }
   
   handleFormSubmit(e){
+    e.preventDefault();
     const token = $('meta[name="csrf-token"]').attr('content');
 
     let body = JSON.stringify({id: this.props.product_id })
@@ -19,9 +20,12 @@ class AddButton extends React.Component {
       },
       body: body,
     }).then((response) => {return response.json()})
-    .then((product)=>{
-      console.log(this.props.product_id);
+    .then((cart_line_item)=>{
+      //console.log(this.props.product_id);
+      //console.log(cart_line_item.id)
+      store.dispatch({ type: 'ADD_CART_LINE_ITEM_ID', id: cart_line_item.id});
     })
+
   }
 
   render() {

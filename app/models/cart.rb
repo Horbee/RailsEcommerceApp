@@ -11,6 +11,7 @@ class Cart < ApplicationRecord
       current_product = cart_line_items.build(product_name: product.name, product_id: product.id, total_price: product.price)
     end
     current_product.save
+    return current_product
   end
 
   def remove_product(id)

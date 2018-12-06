@@ -14,6 +14,7 @@
 //= require turbolinks
 //= require jquery
 //= require jquery_ujs
+//= require vendor/redux-v4
 //= require react
 //= require react_ujs
 //= require components
@@ -28,6 +29,8 @@ $( document ).on('turbolinks:load', function() {
   	selector:'textarea#product_description',
   	plugins: "lists"
   });
+
+  $('.img-zoom').elevateZoom();
 
 });
 

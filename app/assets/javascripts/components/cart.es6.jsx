@@ -11,27 +11,26 @@ class Cart extends React.Component {
 
  
   componentDidMount(){
-    this.refresh();
+    fetch('/api/v1/carts.json')
+        .then((response) => {return response.json()})
+        .then((data) => {
+          this.setState({ products: data });
+          store.dispatch({ type: 'INITIAL_DATA', data: this.state.products});
+        });
     
-    // this.interval = setInterval(() => {
-      
-      
-    //     this.setState({ time: Date.now() });
-      
-    //   }, 1000);
-
+    store.subscribe(() => {
+      console.log("i got this");
+      this.refresh();
+    });
+    
   }
 
   refresh() {
     fetch('/api/v1/carts.json')
         .then((response) => {return response.json()})
-        .then((data) => {this.setState({ products: data }) });
+        .then((data) => { this.setState({ products: data }) });
   }
   
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
   handleDelete(id){
     const token = $('meta[name="csrf-token"]').attr('content');
 
@@ -49,19 +48,6 @@ class Cart extends React.Component {
 
   deleteProduct(id){
     this.refresh();
-    // newProducts = this.state.products.filter((product) => {
-    //   if (product.id == id) {
-    //     console.log("now")
-    //     console.log(product.quantity)
-    //     product.quantity -= 1;
-    //     return true;
-    //   }
-    //   product.id !== id
-    // });
-    
-    // this.setState({
-    //   products: newProducts
-    // })
   }
 
   render () {
