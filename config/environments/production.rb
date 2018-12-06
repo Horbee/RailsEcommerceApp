@@ -93,5 +93,4 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'ecommercehornortest.herokuapp.com' }
 
-  config.assets.precompile += %w( elevateZoom-308.min.js )
 end
