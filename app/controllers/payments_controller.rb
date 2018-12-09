@@ -1,20 +1,26 @@
 class PaymentsController < ApplicationController
 
-    # POST
+    # POST for cart checkout
     def create
         token = params[:stripeToken]
-        @product = Product.find(params[:product_id])
         @email = params[:stripeEmail]
+        @cart = Cart.find(params[:cart_id])
+        @price = @cart.price
         begin
             charge = Stripe::Charge.create(
-                amount: @product.price, # in cents
+                amount: @price, # in cents
                 currency: "eur",
                 source: token,
                 description: @email
             )
             
             if charge.paid
-                @order = Order.create(user_id: current_user.id, product_id: @product.id, total: @product.price)
+                @order = Order.create(user: current_user, total: @price)
+                @cart.cart_line_items.each do |item| 
+                    item.order_id = @order.id
+                    item.cart = nil
+                    item.save
+                end
                 UserMailer.order_received_email(@email, current_user.first_name, @order).deliver_now
                 flash[:notice] = "Your payment was processed successfully"
             end
@@ -26,12 +32,12 @@ class PaymentsController < ApplicationController
             flash[:alert] = "Unfortunately, there was an error processing your payment: #{err[:message]}"
         end
 
-        redirect_to after_payments_path(product_id: @product.id)
+        # !!rewrite
+        redirect_to after_payments_path
     end
 
     # GET
-    def after()
-        @product = Product.find(params[:product_id])
+    def after
     end
 
 end

@@ -7,24 +7,11 @@ class User < ApplicationRecord
 	has_many :orders, dependent: :destroy
 	has_many :comments, dependent: :destroy
 	has_one_attached :avatar
+	has_one :cart, dependent: :destroy
 
 	validates :first_name, presence: true
 	validates :last_name, presence: true
 	validate :correct_image_type
-
-	@@cart = []
-
-	def cart
-		return @@cart
-	end
-
-	def add_item_to_cart(product)
-		@@cart.push(product)
-	end
-
-	def remove_item_from_cart(product)
-		@@cart.delete(product)
-	end
 
 	private
 	def correct_image_type

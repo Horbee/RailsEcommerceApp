@@ -19,7 +19,8 @@ class SimplePagesController < ApplicationController
   end
 
   def cart
-    @cart_line_items = Cart.find(current_user.id).cart_line_items
+    @cart = current_user.cart
+    @cart_line_items = @cart.cart_line_items
   end
 
 end

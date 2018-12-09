@@ -1,3 +1,5 @@
+<% provide(:page_title, "My Cart") %>
+
 <div class="row">
   <div class="col-md-8">
 
@@ -41,7 +43,7 @@
       </div>
       <div class="col-md-3">
         <h5><%= product.name %></h5>
-        <p><%= product.description %></p>
+        <p><%= strip_tags(product.description).truncate(40) %></p>
       </div>
       <div class="col-md-2">
         <p>$<%= product.price %></p>
@@ -51,7 +53,7 @@
       </div>
       <div class="col-md-2">
         <p>$<%= item.quantity * product.price %></p>
-        <button class="btn btn-outline-danger">Remove</button>
+        <%= link_to 'Remove', api_v1_cart_path(item), method: :delete, class: "btn btn-outline-danger" %>
       </div>
     </div>
     <% end %>
@@ -60,6 +62,13 @@
   <!-- Render Aside Cart from partials -->
   <div class="col-md-4">
     <%= render partial: "shared/aside_cart", locals: { checkout: true} %>
+
+    <% if @cart.cart_line_items.count > 0 %>
+      <%= form_with(url: '/payments/create', class: "mt-3 d-flex justify-content-center") do |form| %>
+        <%= render partial: "shared/stripe_cart_checkout_button" %>
+        <%= hidden_field_tag(:cart_id, @cart.id) %>
+      <% end %>
+    <% end %>
   </div>
 
 </div>

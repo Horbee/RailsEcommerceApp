@@ -1,0 +1,9 @@
+<script
+  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+  data-image="<%= image_url(@cart.products.first.image_url) %>"
+  data-name="Create Order"
+  data-description="Please provide your card info"
+  data-amount="<%= @cart.price %>">
+  data-currency="eur">
+</script>

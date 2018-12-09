@@ -1,6 +1,7 @@
 class Cart < ApplicationRecord
   has_many :cart_line_items, dependent: :destroy
   has_many :products, through: :cart_line_items
+  belongs_to :user
 
   def add_product(product)
     current_product = cart_line_items.find_by(product_id: product.id)
@@ -24,6 +25,14 @@ class Cart < ApplicationRecord
       current_product.total_price = current_product.quantity * current_product.product.price
       current_product.save
     end
+  end
+
+  def price
+    price = 0
+    cart_line_items.each do |item| 
+      price += item.total_price
+    end
+    price
   end
   
   

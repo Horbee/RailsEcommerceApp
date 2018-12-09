@@ -1,4 +1,4 @@
-<%= render partial: "shared/notice", locals: {notice: notice} %>
+<% provide(:page_title, "Thank You") %>
 
 <div class="row text-center d-flex justify-content-center">
 
@@ -8,14 +8,14 @@
             <h1 class="text-success mt-2"><strong>Thank you</strong></h1>
             <h2 class="text-success">for your purchase!</h2> 
             <p>We sent you an E-Mail with the order details.</p>
-            <%= link_to 'Back To Product', product_path(@product), class: "btn btn-primary mb-4" %>
+            <%= link_to 'Jump to my Orders', orders_path, class: "btn btn-primary mb-4" %>
         </div>
     <% else %>
         <div class="col-md-6 email-bg p-0">
             <%= image_tag("error_small.jpeg", class:"img-fluid") %>
             <h2 class="text-danger mt-2">Unfortunately, there was an error processing your payment</h2> 
             <p>Please try again later</p>
-            <%= link_to 'Back To Product', product_path(@product), class: "btn btn-primary mb-4" %>
+            <%= link_to 'Back To Products', products_path, class: "btn btn-primary mb-4" %>
         </div>
     <% end %>
 

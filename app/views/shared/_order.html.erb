@@ -2,28 +2,37 @@
 	<div class="card-header">
 		<div class="row">
 			<div class="col-sm">
-				<p>ORDER PLACED: <br><%= order.created_at.strftime("%d %B, %Y") %></p>
+				<p>ORDER PLACED: <br><%= order.show_date %></p>
 			</div>
 			<div class="col-sm">
-				<p>TOTAL: <br><%= order.total %></p>
+				<p>TOTAL: <br>€ <%= order.total %></p>
 			</div>
 			<div class="col-sm">
-				<p>DISPATCH TO: <br><%= "#{current_user.last_name}, #{current_user.first_name}" %></p>
+				<p>DISPATCH TO: <br><%= "#{order.user.last_name}, #{order.user.first_name}" %></p>
 			</div>
 		</div>
 	</div>
-  	<div class="row">
-	    <div class="col-sm-3 media">
-	    	<%= image_tag(order.product.image_url, class: "img-fluid align-self-center")%>
-	    </div>
-	    <div class="col-sm-9 ">
-	    	<div class="p-2">
-		     	<h1><%= link_to "Order # #{order.id}", order %></h1>
-		    	<%= link_to order.product.name, order.product %>
-		      	<p><%= strip_tags(order.product.description) %></p>
-		      	<strong>€ <%= order.product.converted_price %></strong>
-		      	<%= link_to 'Delete Order', order, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger mx-2" %>
-	    	</div>
-	    </div>
-	</div>
+
+		<div class="my-3">
+			<h1 class="d-inline-block mx-3">Order on <%= order.show_date %></h1>
+			<%= link_to 'Delete Order', order, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger d-inline-block ml-3" %>
+		</div>
+
+		<div class="row">
+			<% order.cart_line_items.each do |item| %>
+				<div class="col-sm-3 media my-2"> 
+					<%= image_tag(item.product.image_url, class: "d-block w-100 ml-3")%>
+				</div>
+
+				<div class="col-sm-9 my-2">
+					<div class="p-2">
+						
+						<%= link_to item.product_name, item.product %>
+						<p><%= strip_tags(item.product.description).truncate(80) %></p>
+						<p>Price of the <%= item.quantity %> item(s) is: <strong>€ <%= item.total_price %></strong></p>
+					</div>
+				</div>
+			<% end %>
+		</div>
+
 </div>

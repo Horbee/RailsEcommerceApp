@@ -29,7 +29,8 @@ $( document ).on('turbolinks:load', function() {
   	selector:'textarea#product_description',
   	plugins: "lists"
   });
-
+  
+  // activate the elevateZoom plugin
   $('.img-zoom').elevateZoom();
 
 });

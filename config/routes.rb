@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   end
 
   resources :users
-  resources :orders, only:[:index, :show, :destroy]
+  resources :orders, only:[:index, :destroy]
 
   namespace :api do 
     namespace :v1 do 

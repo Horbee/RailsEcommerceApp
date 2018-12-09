@@ -63,11 +63,13 @@ class Cart extends React.Component {
       )
     });
 
+    checkout_btn = <a href="/simple_pages/cart" className="btn btn-success btn-block">CHECKOUT</a>
+    
     return (
       <div className="cart-content">
-        <p className="cart-title text-center">{this.state.products.length} Items in your Cart</p>
+        <p className="cart-title text-center">{this.state.products.length} Product(s) in your Cart</p>
         <div className="dropdown-divider"></div>
-        <p className='text-muted text-center'>Click on Checkout to finish shopping</p>
+        <p className='text-muted text-center'>{this.state.products.length ? "Click on Checkout to finish shopping" : "Your cart is empty"}</p>
         
         <ul className="list-group">
           {products}            
@@ -78,7 +80,7 @@ class Cart extends React.Component {
         <p className="cart-value float-right text-right">${price * 0.01}</p>
         <div className="clearfix"></div>
         <div className="dropdown-divider"></div>
-        <a href={this.props.checkout ? "/" : "/simple_pages/cart"} className="btn btn-success btn-block">CHECKOUT</a>
+        {this.props.checkout ? "" : checkout_btn }      
       </div>
     );
   }

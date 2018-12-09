@@ -14,11 +14,15 @@ class Api::V1::CartsController < ApplicationController
 
   def destroy
     @cart.remove_product(params[:id])
+    respond_to do |format|
+      format.html { redirect_to simple_pages_cart_url, notice: 'Product was successfully removed.' }
+      format.json { head :no_content }
+    end
   end
 
   private
   def set_cart
-    @cart = Cart.find(current_user.id)
+    @cart = current_user.cart
   end
 
 end

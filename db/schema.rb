@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_05_192522) do
+ActiveRecord::Schema.define(version: 2018_12_08_141326) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -41,13 +41,17 @@ ActiveRecord::Schema.define(version: 2018_12_05_192522) do
     t.integer "quantity", default: 1
     t.string "product_name"
     t.integer "total_price", default: 0
+    t.integer "order_id"
     t.index ["cart_id"], name: "index_cart_line_items_on_cart_id"
+    t.index ["order_id"], name: "index_cart_line_items_on_order_id"
     t.index ["product_id"], name: "index_cart_line_items_on_product_id"
   end
 
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -62,22 +66,11 @@ ActiveRecord::Schema.define(version: 2018_12_05_192522) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "line_items", force: :cascade do |t|
-    t.integer "order_id"
-    t.integer "product_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_line_items_on_order_id"
-    t.index ["product_id"], name: "index_line_items_on_product_id"
-  end
-
   create_table "orders", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "product_id"
     t.float "total"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["product_id"], name: "index_orders_on_product_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
