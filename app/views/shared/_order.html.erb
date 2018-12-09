@@ -5,7 +5,7 @@
 				<p>ORDER PLACED: <br><%= order.show_date %></p>
 			</div>
 			<div class="col-sm">
-				<p>TOTAL: <br>€ <%= order.total %></p>
+				<p>TOTAL: <br>€ <%= order.converted_price %></p>
 			</div>
 			<div class="col-sm">
 				<p>DISPATCH TO: <br><%= "#{order.user.last_name}, #{order.user.first_name}" %></p>
@@ -29,7 +29,7 @@
 						
 						<%= link_to item.product_name, item.product %>
 						<p><%= strip_tags(item.product.description).truncate(80) %></p>
-						<p>Price of the <%= item.quantity %> item(s) is: <strong>€ <%= item.total_price %></strong></p>
+						<p>Price of the <%= item.quantity %> item(s) is: <strong>€ <%= item.converted_total_price %></strong></p>
 					</div>
 				</div>
 			<% end %>

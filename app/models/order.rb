@@ -11,4 +11,8 @@ class Order < ApplicationRecord
     def show_date
         created_at.strftime("%d %B, %Y")
     end
+
+    def converted_price
+        total.to_d / 100
+    end
 end
