@@ -10,7 +10,7 @@
     <p class="card-text"><%= @product.description.html_safe %></p>
     <li class="list-group-item">Colour: <%= @product.colour ? @product.colour : "Not specified" %><i class="ml-2 fas fa-palette"></i></li>
     <li class="list-group-item">Price: EUR <%= @product.converted_price %><i class="ml-2 fas fa-shopping-cart"></i></li>
-    <p class="mt-2">Average Rating: <div class="rated" data-score="<%= @product.average_rating %>"></div></p>
+    <p class="mt-2">Average Rating: <div id="average-rating" class="rated" data-score="<%= @product.average_rating %>"></div></p>
   </div>
   <div class="col-md-2 box">
     <%= (react_component 'AddButton', product_id: @product.id) if signed_in? %>

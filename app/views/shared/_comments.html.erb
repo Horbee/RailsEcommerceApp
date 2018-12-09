@@ -1,29 +1,5 @@
-<div class="row">
+<div class="row product-reviews">
 	<% @comments.each do |comment| %>
-		<div class="col-md-12">
-            <hr>
-            <p>
-            	<%= comment.user.first_name %> <small><em><%= "#{time_ago_in_words(comment.created_at)} ago" %></em></small>
-
-                <% if signed_in? && current_user.admin? %>
-                    <%= link_to ('<span class="fas fa-trash-alt trash-icon"></span>').html_safe, product_comment_path(comment.product, comment), method: :delete, data: { confirm: 'Are you sure to delete this comment?' } %>
-                <% end %>
-            </p>
-            <div class="rated mb-2" data-score="<%= comment.rating %>"></div>
-            
-            <div class="media">
-                <% if comment.user.avatar.attached? == false %>
-                    <%= image_tag('default_profile.png', size: "64x64", class: "mr-3") %>
-                <% else %>
-                    <%= image_tag(comment.user.avatar.variant(resize: "64x64"), class: "mr-3") %>
-                <% end %>
-
-                <div class="media-body">
-                    <h5 class="mt-0"><%= comment.title %></h5>
-                    <%= comment.body %>
-                </div>
-            </div>
-
-        </div>
+		<%= render comment %>
 	<% end %>
 </div>

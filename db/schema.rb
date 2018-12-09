@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 2018_12_08_141326) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -37,14 +37,14 @@ ActiveRecord::Schema.define(version: 2018_12_08_141326) do
   end
 
   create_table "cart_line_items", force: :cascade do |t|
-    t.integer "cart_id"
-    t.integer "product_id"
+    t.bigint "cart_id"
+    t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "quantity", default: 1
     t.string "product_name"
     t.integer "total_price", default: 0
-    t.integer "order_id"
+    t.bigint "order_id"
     t.index ["cart_id"], name: "index_cart_line_items_on_cart_id"
     t.index ["order_id"], name: "index_cart_line_items_on_order_id"
     t.index ["product_id"], name: "index_cart_line_items_on_product_id"
@@ -53,13 +53,13 @@ ActiveRecord::Schema.define(version: 2018_12_08_141326) do
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "product_id"
+    t.bigint "user_id"
+    t.bigint "product_id"
     t.string "title"
     t.text "body"
     t.integer "rating"
@@ -106,4 +106,8 @@ ActiveRecord::Schema.define(version: 2018_12_08_141326) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "cart_line_items", "orders"
+  add_foreign_key "carts", "users"
+  add_foreign_key "comments", "products"
+  add_foreign_key "comments", "users"
 end
