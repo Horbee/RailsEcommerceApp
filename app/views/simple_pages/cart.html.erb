@@ -36,27 +36,29 @@
 
     <!-- products -->
     <% @cart_line_items.each do |item| %>
-    <div class="row mt-3 product-row">
-      <div class="col-md-3">
-        <% product = item.product %>
-        <%= link_to image_tag(product.image_url, size: '286x180', class: "img-fluid"), product%>
+      <div class="row mt-3 product-row">
+        <div class="col-md-3">
+          <% product = item.product %>
+          <%= link_to image_tag(product.image_url, size: '286x180', class: "img-fluid"), product%>
+        </div>
+        <div class="col-md-3">
+          <h5><%= product.name %></h5>
+          <p><%= strip_tags(product.description).truncate(40) %></p>
+        </div>
+        <div class="col-md-2">
+          <p>$<%= product.price %></p>
+        </div>
+        <div class="col-md-2">
+          <%= item.quantity %>
+        </div>
+        <div class="col-md-2">
+          <p>$<%= item.quantity * product.price %></p>
+          <%= link_to 'Remove One', api_v1_cart_path(item), method: :delete, class: "btn btn-outline-danger" %>
+        </div>
       </div>
-      <div class="col-md-3">
-        <h5><%= product.name %></h5>
-        <p><%= strip_tags(product.description).truncate(40) %></p>
-      </div>
-      <div class="col-md-2">
-        <p>$<%= product.price %></p>
-      </div>
-      <div class="col-md-2">
-        <input type="number" value=<%= item.quantity %> min="1" class="quantity-field">
-      </div>
-      <div class="col-md-2">
-        <p>$<%= item.quantity * product.price %></p>
-        <%= link_to 'Remove', api_v1_cart_path(item), method: :delete, class: "btn btn-outline-danger" %>
-      </div>
-    </div>
     <% end %>
+
+
   </div>
 
   <!-- Render Aside Cart from partials -->

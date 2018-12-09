@@ -20,5 +20,10 @@ $( document ).on('turbolinks:load', function() {
 		var wait = setTimeout(function() {
 			$(element).removeClass(classTitle);
 		}, 1000);
-	}
+  }
+  
+  $('.addbutton').on('click', function() {
+    animate($('.fa-shopping-cart'), "animated flip")  
+  });
+
 });

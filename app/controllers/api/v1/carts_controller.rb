@@ -16,7 +16,7 @@ class Api::V1::CartsController < ApplicationController
     @cart.remove_product(params[:id])
     respond_to do |format|
       format.html { redirect_to simple_pages_cart_url, notice: 'Product was successfully removed.' }
-      format.json { head :no_content }
+      format.json { render json: @cart }
     end
   end
 
