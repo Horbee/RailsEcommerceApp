@@ -5,9 +5,11 @@
   
   <h1>Products</h1>
 
+<% cache(cache_key_for_products) do %>
   <div class="row">
       <%= render partial: "shared/product", collection: @products %>
   </div>
+<% end %>
 
   <% if signed_in? %>
 	  <div class="row">

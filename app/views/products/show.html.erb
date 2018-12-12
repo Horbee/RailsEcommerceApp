@@ -1,6 +1,7 @@
 <% provide(:page_title, @product.name) %>
 <% provide(:product_active, "active") %>
 
+<% cache @product do %>
 <div class="row">
   <div class="col-md-4 mt-5">
     <%= image_tag(@product.image_url, class: "img-fluid img-zoom", data: { zoom_image: asset_path(@product.image_url) }) %>  
@@ -22,6 +23,7 @@
     </div>
   </div>
 </div>
+<% end %>
 
 <div class="row my-3">
   <div class="col-sm-5">

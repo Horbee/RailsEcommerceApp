@@ -116,6 +116,7 @@ GEM
     concurrent-ruby (1.0.5)
     connection_pool (2.2.2)
     crass (1.0.4)
+    dalli (2.7.9)
     datetime_picker_rails (0.0.7)
       momentjs-rails (>= 2.8.1)
     debase (0.2.2)
@@ -334,6 +335,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   chromedriver-helper
   coffee-rails (~> 4.2)
+  dalli
   debase (~> 0.2.2)
   devise
   factory_bot_rails
