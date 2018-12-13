@@ -37,6 +37,7 @@ class Product < ApplicationRecord
         # else save it
         rating = comments.average(:rating).to_f
         $redis.set("product_#{self.id}_avgrating", rating)
+        $redis.expire("product_#{self.id}_avgrating", 120)
         return rating
     end
 
