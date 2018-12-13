@@ -7,14 +7,8 @@ class Cart extends React.Component {
 
  
   componentDidMount(){
-    fetch('/api/v1/carts.json')
-        .then((response) => {return response.json()})
-        .then((data) => {
-          //this.setState({ products: data });
-          //store.dispatch({ type: 'INITIAL_DATA', data: this.state.products});
-          store.dispatch({ type: 'INITIAL_DATA', data: data});
-        });
-    
+    getData();
+
     store.subscribe(() => {
       this.refresh();
     });
@@ -28,6 +22,7 @@ class Cart extends React.Component {
   handleDelete(id){
     if (this.props.checkout)
       return 
+      
     store.dispatch({ type: 'REMOVE_CART_LINE_ITEM', cli_id: id});
   }
 

@@ -67,7 +67,7 @@ const store = createStore(myreducer);
   //console.log("global state is updated")
 //});
 
-function getFetch() {
+function getData() {
   fetch('/api/v1/carts.json')
     .then((response) => {return response.json()})
     .then((data) => {

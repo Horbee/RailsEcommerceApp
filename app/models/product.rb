@@ -31,7 +31,13 @@ class Product < ApplicationRecord
     end
 
     def average_rating
-        comments.average(:rating).to_f
+        # get the average rating if already saved
+        return $redis.get("product_#{self.id}_avgrating") if $redis.get("product_#{self.id}_avgrating")
+
+        # else save it
+        rating = comments.average(:rating).to_f
+        $redis.set("product_#{self.id}_avgrating", rating)
+        return rating
     end
 
     private

@@ -15,13 +15,6 @@ $( document ).on('turbolinks:load', function() {
 
   });
 
-  function animate(element, classTitle){
-		$(element).addClass(classTitle);
-		var wait = setTimeout(function() {
-			$(element).removeClass(classTitle);
-		}, 1000);
-  }
-  
   $('.addbutton').on('click', function() {
     animate($('.fa-shopping-cart'), "animated flip")  
   });

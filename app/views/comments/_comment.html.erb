@@ -1,4 +1,4 @@
-<div class="col-md-12">
+<div id="comment<%= comment.id %>" class="col-md-12">
   <hr>
   <p>
     <%= comment.user.first_name %> <small><em><%= "#{time_ago_in_words(comment.created_at)} ago" %></em></small>
