@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  mount ActionCable.server => '/cable'
  
   namespace :admin do
     resources :users
@@ -24,7 +25,6 @@ Rails.application.routes.draw do
   post 'payments/create', as: 'payments'
   post 'request_admin_rights', to: 'users#request_admin_rights'
 
-  # nested resource
   resources :products do
     resources :comments
   end

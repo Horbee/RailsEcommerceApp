@@ -1,0 +1,8 @@
+animate($('#comment<%= @comment.id %>'), "animated fadeOutDown");
+
+var wait = setTimeout(function() {
+  $('#comment<%= @comment.id %>').remove();
+}, 1000);
+
+$("#average-rating").attr('data-score', "<%= @product.average_rating %>");
+refreshRating();

@@ -103,4 +103,7 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'ecommercehornortest.herokuapp.com' }
 
+  config.web_socket_server_url = "wss://ecommercehornortest.herokuapp.com/cable"
+  config.action_cable.allowed_request_origins = ['https://ecommercehornortest.herokuapp.com', 'http://ecommercehornortest.herokuapp.com']
+
 end

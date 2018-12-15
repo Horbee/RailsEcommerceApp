@@ -4,3 +4,18 @@
     -moz-box-shadow: -1px 11px 39px -6px rgba(0,0,0,0.75);
     box-shadow: -1px 11px 39px -6px rgba(0,0,0,0.75);
 }
+
+.myalert {
+  width: 400px;
+  position: fixed;
+  right: 100px;
+  bottom: 20px;
+}
+
+.fa-comment {  font-size: 3rem; }
+
+.notif-title {
+  line-height: 1.5;
+  display: inline-block;
+  vertical-align: middle;
+}
