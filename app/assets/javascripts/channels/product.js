@@ -1,42 +1,42 @@
 $(document).on('turbolinks:load', function() {
-  App.product.listen_to_comments();
-});
+  App.product = App.cable.subscriptions.create("ProductChannel", {
+    connected: function() {
+      // Called when the subscription is ready for use on the server
+      App.product.listen_to_comments();
+    },
 
-App.product = App.cable.subscriptions.create("ProductChannel", {
-  connected: function() {
-    // Called when the subscription is ready for use on the server
-  },
+    disconnected: function() {
+      // Called when the subscription has been terminated by the server
+    },
 
-  disconnected: function() {
-    // Called when the subscription has been terminated by the server
-  },
+    received: function(data) {
+      // Called when there's incoming data on the websocket for this channel
 
-  received: function(data) {
-    // Called when there's incoming data on the websocket for this channel
+      $('#broadcast-info').show();
+      animate($('#broadcast-info'), "animated slideInRight");
 
-    $('#broadcast-info').show();
-    animate($('#broadcast-info'), "animated slideInRight");
+      var wait = setTimeout(function() {
+        animate($('#broadcast-info'), "animated bounceOutRight");
+        
+        setTimeout(function() {$('#broadcast-info').hide();}, 1000);
 
-    var wait = setTimeout(function() {
-      animate($('#broadcast-info'), "animated bounceOutRight");
+      }, 5000);
       
-      setTimeout(function() {$('#broadcast-info').hide();}, 1000);
+      $('.product-reviews').prepend(data.comment);
+      console.log(data.comment_id);
+      animate($('#comment' + data.comment_id), "animated bounceInRight");
 
-    }, 5000);
-    
-    $('.product-reviews').prepend(data.comment);
-    console.log(data.comment_id);
-    animate($('#comment' + data.comment_id), "animated bounceInRight");
+      $("#average-rating").attr('data-score', data.average_rating);
+      refreshRating();
 
-    $("#average-rating").attr('data-score', data.average_rating);
-    refreshRating();
+    },
 
-  },
+    listen_to_comments: function() {
+      return this.perform('listen', {
+        product_id: $("[data-product-id]").data("product-id")
+      });
+    }
 
-  listen_to_comments: function() {
-    return this.perform('listen', {
-      product_id: $("[data-product-id]").data("product-id")
-    });
-  }
+  });
 
 });
