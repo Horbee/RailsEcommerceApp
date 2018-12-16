@@ -2,7 +2,7 @@
 <% provide(:product_active, "active") %>
 
 <% cache @product do %>
-<div class="row">
+<div class="row" data-product-id="<%= @product.id %>">
   <div class="col-md-4 mt-5">
     <%= image_tag(@product.image_url, class: "img-fluid img-zoom", data: { zoom_image: asset_path(@product.image_url) }) %>  
   </div>
@@ -25,7 +25,7 @@
   </div>
 </div>
 
-<div class="alert alert-info myalert" id="broadcast-info" style="display: none" role="alert">
+<div class="alert alert-info myalert" id="broadcast-info" style="display: block" role="alert">
   <i class="fas fa-comment mr-5"></i><p class="notif-title">A new comment was posted!</p>
 </div>
 
