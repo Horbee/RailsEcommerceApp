@@ -3,8 +3,8 @@
   <p>
     <%= comment.user.first_name %> <small><em><%= "#{time_ago_in_words(comment.created_at)} ago" %></em></small>
 
-    <% if current_user && current_user.admin? %>
-      <%= link_to ('<span class="fas fa-trash-alt trash-icon"></span>').html_safe, product_comment_path(comment.product, comment), method: :delete, data: { confirm: 'Are you sure to delete this comment?' }, remote: true %>
+    <% if request.env['broadcasted'] || (current_user && current_user.admin?) %>
+      <%= link_to ('<span class="fas fa-trash-alt trash-icon"></span>').html_safe, product_comment_path(comment.product, comment), id: "trash#{comment.id}", method: :delete, data: { confirm: 'Are you sure to delete this comment?' }, remote: true %>
     <% end %>
   </p>
   <div class="rated mb-2" data-score="<%= comment.rating %>"></div>

@@ -7,7 +7,9 @@ class Comment < ApplicationRecord
 	validates :product, presence: true
 	validates :rating, numericality: { only_integer: true }
   
-  after_create_commit {CommentUpdateJob.perform_later(self, self.user) }
+  after_create_commit { 
+    CommentUpdateJob.perform_later(self) 
+  }
   # scopes: run on the model and return an array
   # method: runs on a single record
   scope :rating_desc, -> { order(rating: :desc) }

@@ -24,8 +24,15 @@ App.product = App.cable.subscriptions.create("ProductChannel", {
 
     }, 5000);
     
+    fetch('/api/v1/userinfo.json')
+      .then((response) => {return response.json()})
+      .then((userdata) => {
+        if (userdata.is_admin == false) {
+          $('#trash' + data.comment_id).remove();
+        }
+      });
+
     $('.product-reviews').prepend(data.comment);
-    console.log(data.comment_id);
     animate($('#comment' + data.comment_id), "animated bounceInRight");
 
     $("#average-rating").attr('data-score', data.average_rating);
