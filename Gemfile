@@ -45,6 +45,8 @@ gem 'administrate'
 gem "aws-sdk-s3", require: false
 gem 'hirb', '~> 0.7.3'
 gem 'image_processing', '~> 1.2'
+gem 'graphql', '~> 1.8', '>= 1.8.11'
+gem 'graphqljs-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -67,6 +69,7 @@ group :development do
   #gem 'sqlite3'
   gem "better_errors"
   gem "binding_of_caller"
+  gem 'graphiql-rails'
 end
 
 group :test do

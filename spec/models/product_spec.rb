@@ -37,5 +37,20 @@ describe Product do
         it "product is invalid without a price" do
             expect(FactoryBot.build(:product, price: nil)).not_to be_valid
         end
+
+        it "sets a default image url if the text field in the form is empty" do
+            expect(FactoryBot.build(:product, image_url: nil)).to be_valid
+        end
+    end
+
+    context "When the model has a price in cents saved" do
+        before do
+            @product = FactoryBot.create(:product)
+        end
+
+        it "converted price method returns the price in proper format" do
+            expect(@product.converted_price).to eq @product.price * 0.01
+        end
+        
     end
 end

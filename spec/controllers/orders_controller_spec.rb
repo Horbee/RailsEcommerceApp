@@ -15,22 +15,17 @@ describe OrdersController, type: :controller do
                 sign_in @user
             end
 
-            it "loads correct the user's order details" do
-                get :show, params: {id: @order.id}
+            it "the user gets his orders" do
+                get :index
                 expect(response).to be_ok  
-                expect(assigns(:order)).to eq @order
+                expect(response).to render_template('index')
             end
 
-            it "cannot access the other user's order details" do
-                get :show, params: {id: @order_second.id}
-                expect(response).to have_http_status(302)
-                expect(response).to redirect_to root_path
-            end
         end        
       
         context 'when a user is not logged in' do
             it "redirects to login" do
-                get :show, params: {id: @order.id}
+                get :index
                 expect(response).to redirect_to new_user_session_path 
             end
         end

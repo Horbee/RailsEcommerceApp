@@ -6,10 +6,6 @@ class OrdersController < ApplicationController
         @orders = Order.user_related(current_user)
     end
 
-    def show
-        @order = Order.find(params[:id])
-    end
-
     def destroy
         if Order.find(params[:id]).destroy
             redirect_to orders_path

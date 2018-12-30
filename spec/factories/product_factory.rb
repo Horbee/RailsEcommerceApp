@@ -4,7 +4,7 @@ FactoryBot.define do
     factory :product do
         name 
         description "desc"
-        price 5
+        price 50000
         image_url "placeholder.jpg"
     end
 end

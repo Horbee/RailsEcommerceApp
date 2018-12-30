@@ -15,14 +15,14 @@ class Cart < ApplicationRecord
     current_product
   end
 
-  def remove_product(id)
+  def remove_product(id) #cli_id
     current_product = cart_line_items.find(id)
 
     if current_product.quantity == 1
       current_product.destroy
     elsif current_product.quantity > 1
       current_product.decrement(:quantity)
-      current_product.total_price = current_product.quantity * current_product.product.price
+      current_product.total_price = current_product.quantity * current_product.product.price #recalc
       current_product.save
     end
   end

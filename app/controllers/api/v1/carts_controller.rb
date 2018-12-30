@@ -13,7 +13,7 @@ class Api::V1::CartsController < ApplicationController
   end 
 
   def destroy
-    @cart.remove_product(params[:id])
+    @cart.remove_product(params[:id]) #cli_id
     respond_to do |format|
       format.html { redirect_to simple_pages_cart_url, notice: 'Product was successfully removed.' }
       format.json { render json: @cart }

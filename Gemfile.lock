@@ -142,6 +142,13 @@ GEM
     ffi (1.9.25)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    graphiql-rails (1.5.0)
+      railties
+      sprockets-rails
+    graphql (1.8.11)
+    graphqljs-rails (0.4.18)
+      actionpack
+      railties
     hirb (0.7.3)
     i18n (1.1.1)
       concurrent-ruby (~> 1.0)
@@ -356,6 +363,9 @@ DEPENDENCIES
   debase (~> 0.2.2)
   devise
   factory_bot_rails
+  graphiql-rails
+  graphql (~> 1.8, >= 1.8.11)
+  graphqljs-rails
   hirb (~> 0.7.3)
   image_processing (~> 1.2)
   jbuilder (~> 2.5)

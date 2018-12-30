@@ -14,6 +14,7 @@
 //= require turbolinks
 //= require jquery
 //= require jquery_ujs
+//= require graphql
 //= require vendor/redux-v4
 //= require react
 //= require react_ujs

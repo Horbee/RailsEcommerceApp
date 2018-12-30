@@ -15,7 +15,7 @@
         <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
       <% end %>
       <ul class="list-group list-group-flush mt-2">
-        <%= (react_component 'AddButton', product_id: product.id) if signed_in? %>
+        <%= (react_component 'AddButton', product: product.as_json(only: [:id, :name, :price])) if signed_in? %>
       </ul>
     </div>
   </div>

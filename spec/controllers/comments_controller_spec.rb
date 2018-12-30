@@ -14,7 +14,7 @@ describe CommentsController, type: :controller do
                 sign_in @user
             end
 
-            it "can create comments if confirmed" do
+            it "can create comments if user's account is confirmed" do
                 post :create, params: {comment: {title: @comment.title, body: @comment.body, rating: @comment.rating}, product_id: @product.id}
                 expect(response).to have_http_status(302) 
             end
@@ -23,12 +23,12 @@ describe CommentsController, type: :controller do
     end
 
     describe 'DELETE #destroy' do
-        context 'when user is logged is' do
+        context 'when user is logged in' do
             before do
                 sign_in @user
             end
 
-            it "cannot delete comment if user not admin" do
+            it "cannot delete comment if user is not an admin" do
                 delete :destroy, params: { product_id: @product.id, id: @comment.id }
                 expect(response).to have_http_status(302) 
             end
