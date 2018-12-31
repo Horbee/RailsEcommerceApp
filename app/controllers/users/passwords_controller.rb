@@ -17,9 +17,10 @@ class Users::PasswordsController < Devise::PasswordsController
   # end
 
   # PUT /resource/password
-  # def update
-  #   super
-  # end
+  def update
+    super
+    byebug
+  end
 
   # protected
 

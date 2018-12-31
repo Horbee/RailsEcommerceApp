@@ -63,7 +63,7 @@ class UsersController < ApplicationController
 
   def after_confirmation
   end
-
+ 
   # POST
   def request_admin_rights
     if current_user.confirmed?

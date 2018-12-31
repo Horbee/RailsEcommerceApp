@@ -22,8 +22,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    # super
-    redirect_to edit_user_registration_path, notice: 'Password was successfully updated.'
+    super
+    #flash[:success] = "Password was successfully updated. Please sign in again."
   end
 
   # DELETE /resource
