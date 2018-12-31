@@ -8,7 +8,7 @@ class AddButton extends React.Component {
   
   handleFormSubmit(e){
     e.preventDefault();
-    store.dispatch({ type: 'SEND_ADD_CART_LINE_ITEM', product: this.props.product});
+    store.dispatch({ type: 'ADD_CART_LINE_ITEM', product: this.props.product});
   }
 
   render() {

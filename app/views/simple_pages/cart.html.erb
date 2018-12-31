@@ -3,31 +3,19 @@
 <div class="row">
   <div class="col-md-8">
 
-    <form>
-      <div class="form-row">
-        <div class="col">
-          <label for="promo-code">Enter a promotional code</label>
-          <input id="promo-code" type="text" name="promo-code" maxlength="5" class="promo-code-field form-control">
-        </div>
-        <div class="col pt-4">
-          <button class="btn btn-primary">Apply</button>
-        </div>
-      </div>
-    </form>
-
     <div class="basket-labels">
       <ul>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-6">
               <li class="item item-heading">Item</li>
           </div>
-          <div class="col-md-2">
+          <div class="col-2">
             <li class="price">Price</li>
           </div>
-          <div class="col-md-2">
+          <div class="col-2">
             <li class="quantity">Quantity</li>
           </div>
-          <div class="col-md-2">
+          <div class="col-2">
             <li class="subtotal">Subtotal</li>
           </div>
         </div>
@@ -35,34 +23,39 @@
     </div>
 
     <!-- products -->
+    <% @cart_line_items.reload %> 
     <% @cart_line_items.each do |item| %>
-      <div class="row mt-3 product-row">
-        <div class="col-md-3">
+      <div class="row my-2 product-row">
+        <div class="col-3">
           <% product = item.product %>
           <%= link_to image_tag(product.image_url, size: '286x180', class: "img-fluid"), product%>
         </div>
-        <div class="col-md-3">
+        <div class="col-3">
           <h5><%= product.name %></h5>
-          <p><%= strip_tags(product.description).truncate(40) %></p>
+          <p class="d-none d-sm-block"><%= strip_tags(product.description).truncate(40) %></p>
         </div>
-        <div class="col-md-2">
+        <div class="col-2">
           <p>$<%= product.converted_price %></p>
         </div>
-        <div class="col-md-2">
-          <%= item.quantity %>
+        <div class="col-2">
+          <%= item.quantity %><br>
+          <div class="btn-toolbar" role="toolbar">
+            <div class="btn-group mr-2" role="group" aria-label="Quantity group">
+              <%= link_to '+', api_v1_carts_path(id: item.product.id), method: :post, class: "btn btn-outline-danger btn-sm" %>
+              <%= link_to '-', api_v1_cart_path(item), method: :delete, class: "btn btn-outline-danger btn-sm" %>
+            </div>
+          </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-2">
           <p>$<%= item.quantity * product.converted_price %></p>
-          <%= link_to 'Remove One', api_v1_cart_path(item), method: :delete, class: "btn btn-outline-danger" %>
         </div>
       </div>
     <% end %>
 
-
   </div>
 
   <!-- Render Aside Cart from partials -->
-  <div class="col-md-4">
+  <div class="col-md-4 mt-2">
     <%= render partial: "shared/aside_cart", locals: { checkout: true} %>
 
     <% if @cart.cart_line_items.count > 0 %>

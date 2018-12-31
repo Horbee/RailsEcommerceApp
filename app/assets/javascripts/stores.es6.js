@@ -1,19 +1,19 @@
 const { createStore } = window.Redux;
 
 const initState = {
-  line_items: []
+  lineItems: []
 }
-var line_items = [];
+var lineItems = [];
 var changed = false;
 
-function myreducer(state = initState, action) {
-  if (action.type == 'SEND_ADD_CART_LINE_ITEM') {
+function myReducer(state = initState, action) {
+  if (action.type == 'ADD_CART_LINE_ITEM') {
     changed = true;
     var found = false;
     var cli = {};
-    var id = 0;
-    state.line_items.map(item => {
-      if (parseInt(item.id) >= id) id = parseInt(item.id) + 1;
+    var newId = 0;
+    state.lineItems.map(item => {
+      if (parseInt(item.id) >= newId) newId = parseInt(item.id) + 1;
 
       if (item.productId == action.product.id) {
         item.quantity += 1;
@@ -28,9 +28,9 @@ function myreducer(state = initState, action) {
         ...state
       }
     } else {
-      cli = { id: id, productId: action.product.id, productName: action.product.name, quantity: 1, totalPrice: action.product.price }
+      cli = { id: newId, productId: action.product.id, productName: action.product.name, quantity: 1, totalPrice: action.product.price }
       return {
-        line_items: [...state.line_items, cli]
+        lineItems: [...state.lineItems, cli]
       }
     }
 
@@ -38,8 +38,8 @@ function myreducer(state = initState, action) {
 
   if (action.type == 'REMOVE_CART_LINE_ITEM') {
     changed = true;
-    var newList = state.line_items.filter(item => {
-      if (item.id === action.cli_id) {
+    var newList = state.lineItems.filter(item => {
+      if (item.id === action.cliId) {
         var prodPrice = item.totalPrice / item.quantity;
         item.quantity -= 1;
         item.totalPrice -= prodPrice;
@@ -51,22 +51,23 @@ function myreducer(state = initState, action) {
     })
 
     return {
-      line_items: newList
+      lineItems: newList
     }
   }
 
   if (action.type == 'INITIAL_DATA') {
-    line_items = action.data;
+    lineItems = action.data;
     return {
       ...state,
-      line_items: line_items
+      lineItems: lineItems
     }
   }
 }
 
-const store = createStore(myreducer);
+const store = createStore(myReducer);
 
 function getData() {
+    //grabbing the data from db
     queryString = `{
       cartLineItems {
         id
@@ -95,7 +96,12 @@ function makeGraphQL(query) {
   }).then((response) => { return response.json(); })
 }
 
-$( document ).on('turbolinks:request-start', function() {
+function beforeCheckOut() {
+  if (changed) saveItems().then((data)=>{ window.location.href = "/simple_pages/cart" });
+  else window.location.href = "/simple_pages/cart"
+}
+
+function saveItems() {
   if(!changed) return;
 
   deleteString = `mutation {
@@ -103,10 +109,8 @@ $( document ).on('turbolinks:request-start', function() {
   }`;
 
   makeGraphQL(deleteString)
-    .then((data)=>{ /*console.log(data)*/ })
 
-
-  if (store.getState().line_items) {
+  if (store.getState().lineItems) {
     const createCli = (item) => {
       const alias = `alias_${Math.random().toString(36).slice(2)}`
     
@@ -127,12 +131,13 @@ $( document ).on('turbolinks:request-start', function() {
       `
     }
     
-    const mutations  = store.getState().line_items.map(item => createCli(item))
+    const mutations  = store.getState().lineItems.map(item => createCli(item))
     const createMutation = createClis(mutations)
 
-    makeGraphQL(createMutation)
-      .then((data)=>{ /*console.log(data)*/ })
+    return makeGraphQL(createMutation);
   }
   
   changed = false;
-});
+}
+
+$( document ).on('turbolinks:request-start', function() {  saveItems(); });

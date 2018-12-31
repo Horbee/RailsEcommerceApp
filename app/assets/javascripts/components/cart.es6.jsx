@@ -7,7 +7,7 @@ class Cart extends React.Component {
 
  
   componentDidMount(){
-    getData(); // it's a function in the store
+    getData(); // function in the store
 
     store.subscribe(() => {
       this.refresh();
@@ -15,25 +15,23 @@ class Cart extends React.Component {
 
   }
 
-  refresh() {
-    this.setState({ products: [] });
-  }
+  refresh() { this.setState({ products: [] }); }
   
-  handleDelete(id){ //this is the cli_id
+  handleDelete(cliId){ 
     if (this.props.checkout)
-      return //on the actual checkout page
+      return //on the actual checkout page you cannot delete items by clicking on the name
       
-    store.dispatch({ type: 'REMOVE_CART_LINE_ITEM', cli_id: id});
+    store.dispatch({ type: 'REMOVE_CART_LINE_ITEM', cliId: cliId});
   }
 
   render () {
     var checkoutPrice = 0; 
-    var line_item_length = 0;
+    var lineItemLength = 0;
 
     // partial for the CLIs
     if(typeof store.getState() !== "undefined") {
       //console.log(store.getState());
-      var items = store.getState().line_items.map((cli) => {
+      var items = store.getState().lineItems.map((cli) => {
         checkoutPrice += cli.totalPrice;
         return(
           <li className="list-group-item list-group-item-light" key={cli.id}>
@@ -43,17 +41,17 @@ class Cart extends React.Component {
           </li>
         )
       });
-      line_item_length = store.getState().line_items.length;
+      lineItemLength = store.getState().lineItems.length;
     }
     // end of the CLI partials
 
-    checkout_btn = <a href="/simple_pages/cart" className="btn btn-success btn-block">CHECKOUT</a>
+    checkoutBtn = <button onClick={beforeCheckOut} className="btn btn-success btn-block">CHECKOUT</button>
     
     return (
       <div className="cart-content">
-        <p className="cart-title text-center">{line_item_length} Product(s) in your Cart</p>
+        <p className="cart-title text-center">{lineItemLength} Product(s) in your Cart</p>
         <div className="dropdown-divider"></div>
-        <p className='text-muted text-center'>{line_item_length ? "Click on Checkout to finish shopping" : "Your cart is empty"}</p>
+        <p className='text-muted text-center'>{lineItemLength ? "Click on Checkout to finish shopping" : "Your cart is empty"}</p>
         
         <ul className="list-group">
           {items}            
@@ -64,7 +62,7 @@ class Cart extends React.Component {
         <p className="cart-value float-right text-right">${checkoutPrice * 0.01}</p>
         <div className="clearfix"></div>
         <div className="dropdown-divider"></div>
-        {this.props.checkout ? "" : checkout_btn }      
+        {this.props.checkout ? "" : checkoutBtn }      
       </div>
     );
   }

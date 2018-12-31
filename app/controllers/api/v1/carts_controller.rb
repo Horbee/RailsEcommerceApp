@@ -9,7 +9,10 @@ class Api::V1::CartsController < ApplicationController
   def create
     product = Product.find(params[:id])
     cart_line_item = @cart.add_product(product)
-    render json: cart_line_item
+    respond_to do |format|
+      format.html { redirect_to simple_pages_cart_url, notice: 'Product was successfully added.' }
+      format.json { render json: cart_line_item }
+    end
   end 
 
   def destroy
