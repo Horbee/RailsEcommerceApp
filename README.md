@@ -9,7 +9,7 @@ features which can be found in most webshop applications.
 * Rails 5.2.1
 * [React-rails](https://github.com/reactjs/react-rails) - The App is using React components for the shopping cart.
 * [Redux](https://github.com/reduxjs/redux) - A state container for our components.
-* [GraphQL](http://graphql.org).
+* [GraphQL](http://graphql.org) - An implementation of GraphQL using the graphql gem.
 * [Graphiql](https://github.com/graphql/graphiql) - Graphiql is an in-browser IDE for exploring GraphQL.
 * SQLite3 for development and PostgreSQL for production.
 
