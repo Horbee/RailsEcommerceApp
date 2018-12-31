@@ -1,7 +1,38 @@
 <% provide(:page_title, "About Page") %>
 <% provide(:about_active, "active") %>
 
-<section class="content">
-    <h1>About Buy Laptops</h1>
-    <p>Our customer support is the best on the world, and happy to help you.</p>
+<section>
+    <h1 class="content-heading text-center">About Buy Laptops</h1>
+    <h3>eCommerce Web-Application</h3>
+    <p>This application is created by me during my CareerFoundry course. This is a simple webshop using ordinary
+        features which can be found in most webshop applications.</p>
+
+    <h3>Technologies</h3>
+    <ul>
+        <li>Ruby 2.5.1</li>
+        <li>Rails 5.2.1</li>
+        <li><a href="https://github.com/reactjs/react-rails">React-rails</a> - The App is using React components for the shopping cart.</li>
+        <li><a href="https://github.com/reduxjs/redux">Redux</a> - A state container for our components.</li>
+        <li><a href="http://graphql.org">GraphQL</a> - An implementation of GraphQL using the graphql gem.</li>
+        <li><a href="https://github.com/graphql/graphiql">Graphiql</a> - Graphiql is an in-browser IDE for exploring GraphQL.</li>
+        <li>SQLite3 for development and PostgreSQL for production.</li>
+    </ul>
+
+    <h3>Features</h3>
+    <ul>
+        <li>CRUD (create / read / update / delete) on products</li>
+        <li>Creating / deleting comments on product page</li>
+        <li>Real-time updates with ActionCable when a user posts a new comment</li>
+        <li>Creating orders with and payments with Stripe</li>
+        <li>Pagination on comments listing</li>
+        <li>Searching on products</li>
+        <li>Authentication with Devise and authorizations (users, admins)</li>
+        <li>Creating user account</li>
+        <li>Update user profile (incl. avatar image saved on Amazon S3) and changing password</li>
+        <li>Sending E-mails</li>
+        <li>Application ready for production</li>
+    </ul>
+
+    <p>The GitHub page can be reached with <a href="https://github.com/Horbee/RailsEcommerceApp">this </a>link</p>
+    
 </section>
